@@ -1,4 +1,4 @@
-// Freeware. Written by Matt Fomich.
+п»ї// Freeware. Written by Matt Fomich.
 // matt.fomich@gmail.com
 
 using System;
@@ -54,107 +54,107 @@ namespace FAQ_Net
         private static string SelectedId_Razdel = null;
         private Timer Timer1 = new Timer();
         //TreeView TV1 = new TreeView();
-        TreeNode StartNode = new TreeNode();    //Через эту переменную переносим ветку.
-        bool DGVQuestionsDrag = false;          //Отметка переноса вопроса из DGVQuestions
+        TreeNode StartNode = new TreeNode();    //Р§РµСЂРµР· СЌС‚Сѓ РїРµСЂРµРјРµРЅРЅСѓСЋ РїРµСЂРµРЅРѕСЃРёРј РІРµС‚РєСѓ.
+        bool DGVQuestionsDrag = false;          //РћС‚РјРµС‚РєР° РїРµСЂРµРЅРѕСЃР° РІРѕРїСЂРѕСЃР° РёР· DGVQuestions
         FindForm fnd;
         bool lastOrderByDesc = false;
-    tools.TablePropertyUserControl _tablePropertyUserControl;
-    /// <summary>
-    /// Признак отмены перезапуска приложения
-    /// </summary>
-    public static bool RestartApplicationCanceled = false;
+        tools.TablePropertyUserControl _tablePropertyUserControl;
+        /// <summary>
+        /// РџСЂРёР·РЅР°Рє РѕС‚РјРµРЅС‹ РїРµСЂРµР·Р°РїСѓСЃРєР° РїСЂРёР»РѕР¶РµРЅРёСЏ
+        /// </summary>
+        public static bool RestartApplicationCanceled = false;
 
-    public MainForm()
-    {
-      // this.ruler = new TopRuler();
-      InitializeComponent();
-      this.richText = new FAQ_Net.RichTextBoxCustom();
-      this.splitContainer1.Panel2.Controls.Add(this.richText);
-      this.richText.BringToFront();
-      // Инициализация richText
-      this.richText.AcceptsTab = true;
-      this.richText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-      this.richText.ContextMenuStrip = this.richMenu;
-      this.richText.Dock = System.Windows.Forms.DockStyle.Fill;
-      this.richText.Font = new System.Drawing.Font("Times New Roman", 12F);
-      this.richText.HideSelection = false;
-      this.richText.Location = new System.Drawing.Point(0, 50);
-      this.richText.Name = "richText";
-      this.richText.RightMargin = 700;
-      this.richText.ShowSelectionMargin = true;
-      this.richText.Size = new System.Drawing.Size(890, 76);
-      this.richText.TabIndex = 12;
-      this.richText.Text = "";
-      this.richText.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.RichText_LinkClicked);
-      this.richText.SelectionChanged += new System.EventHandler(this.RichText_SelectionChanged);
-      this.richText.TextChanged += new System.EventHandler(this.RichText_TextChanged);
-      this.richText.Enter += new System.EventHandler(this.richText_Enter);
-      this.richText.KeyDown += richText_KeyDown;
-      _settingsXml = new SharedLibrary.SettingsXml(Application.ProductName);
-      _settingsXml.LoadFormPosition(this);
-      _settingsXml.SaveFormPosition(this);
+        public MainForm()
+        {
+            // this.ruler = new TopRuler();
+            InitializeComponent();
+            this.richText = new FAQ_Net.RichTextBoxCustom();
+            this.splitContainer1.Panel2.Controls.Add(this.richText);
+            this.richText.BringToFront();
+            // РРЅРёС†РёР°Р»РёР·Р°С†РёСЏ richText
+            this.richText.AcceptsTab = true;
+            this.richText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.richText.ContextMenuStrip = this.richMenu;
+            this.richText.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.richText.Font = new System.Drawing.Font("Times New Roman", 12F);
+            this.richText.HideSelection = false;
+            this.richText.Location = new System.Drawing.Point(0, 50);
+            this.richText.Name = "richText";
+            this.richText.RightMargin = 700;
+            this.richText.ShowSelectionMargin = true;
+            this.richText.Size = new System.Drawing.Size(890, 76);
+            this.richText.TabIndex = 12;
+            this.richText.Text = "";
+            this.richText.LinkClicked += new System.Windows.Forms.LinkClickedEventHandler(this.RichText_LinkClicked);
+            this.richText.SelectionChanged += new System.EventHandler(this.RichText_SelectionChanged);
+            this.richText.TextChanged += new System.EventHandler(this.RichText_TextChanged);
+            this.richText.Enter += new System.EventHandler(this.richText_Enter);
+            this.richText.KeyDown += richText_KeyDown;
+            _settingsXml = new SharedLibrary.SettingsXml(Application.ProductName);
+            _settingsXml.LoadFormPosition(this);
+            _settingsXml.SaveFormPosition(this);
 
-      // Компонент добавления таблицы
-      var dropDown = new tools.ToolStripTableSizeSelector();
-      dropDown.Opening += DropDown_Opening;
-      dropDown.Selector.TableSizeSelected += Selector_TableSizeSelected;
-      tsddbInsertTable.DropDown = dropDown;
-      var tsmiInsertTable = new ToolStripMenuItem
-      {
-        Name = "tsmiInsertTable",
-        Size = new Size(152, 22),
-        Text = "Создать большую таблицу",
-        Tag = "InsertTable"
-      };
-      tsmiInsertTable.Click += tsmiInsertTable_Click;
-      tsddbInsertTable.DropDownItems.Add(tsmiInsertTable);
+            // РљРѕРјРїРѕРЅРµРЅС‚ РґРѕР±Р°РІР»РµРЅРёСЏ С‚Р°Р±Р»РёС†С‹
+            var dropDown = new tools.ToolStripTableSizeSelector();
+            dropDown.Opening += DropDown_Opening;
+            dropDown.Selector.TableSizeSelected += Selector_TableSizeSelected;
+            tsddbInsertTable.DropDown = dropDown;
+            var tsmiInsertTable = new ToolStripMenuItem
+            {
+                Name = "tsmiInsertTable",
+                Size = new Size(152, 22),
+                Text = "РЎРѕР·РґР°С‚СЊ Р±РѕР»СЊС€СѓСЋ С‚Р°Р±Р»РёС†Сѓ",
+                Tag = "InsertTable"
+            };
+            tsmiInsertTable.Click += tsmiInsertTable_Click;
+            tsddbInsertTable.DropDownItems.Add(tsmiInsertTable);
 
-      // Компонент для создания таблиц с расширенными настройками
-      _tablePropertyUserControl = new tools.TablePropertyUserControl();
-      _tablePropertyUserControl.OnCreateTableClickButton += Selector_TableSizeSelected;
-      
-      JournalDGV.Columns[JournalQuestionColumn.Name].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-      JournalDGV.Columns[JournalQuestionColumn.Name].FillWeight = 100;
-      
-      FavoriteDGV.Columns[Favorites_question.Name].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-      FavoriteDGV.Columns[Favorites_question.Name].FillWeight = 100;
-      
-      DGVResultSearch.Columns[QuestionSearchColumn.Name].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-      DGVResultSearch.Columns[QuestionSearchColumn.Name].FillWeight = 100;
+            // РљРѕРјРїРѕРЅРµРЅС‚ РґР»СЏ СЃРѕР·РґР°РЅРёСЏ С‚Р°Р±Р»РёС† СЃ СЂР°СЃС€РёСЂРµРЅРЅС‹РјРё РЅР°СЃС‚СЂРѕР№РєР°РјРё
+            _tablePropertyUserControl = new tools.TablePropertyUserControl();
+            _tablePropertyUserControl.OnCreateTableClickButton += Selector_TableSizeSelected;
 
-      // Set Rich Textbox and right margin line.
-      //ruler1.InitializeObjects(this.richText, this.rightMarginLine);
-    }
+            JournalDGV.Columns[JournalQuestionColumn.Name].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            JournalDGV.Columns[JournalQuestionColumn.Name].FillWeight = 100;
+
+            FavoriteDGV.Columns[Favorites_question.Name].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            FavoriteDGV.Columns[Favorites_question.Name].FillWeight = 100;
+
+            DGVResultSearch.Columns[QuestionSearchColumn.Name].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            DGVResultSearch.Columns[QuestionSearchColumn.Name].FillWeight = 100;
+
+            // Set Rich Textbox and right margin line.
+            //ruler1.InitializeObjects(this.richText, this.rightMarginLine);
+        }
 
         private void tsmiInsertTable_Click(object sender, EventArgs e)
         {
-          _tablePropertyUserControl.Parent = splitContainer1.Panel2;
-          _tablePropertyUserControl.BringToFront();
-          _tablePropertyUserControl.Location = new Point(MainSC.Panel1.ClientSize.Width + 100, 100);
+            _tablePropertyUserControl.Parent = splitContainer1.Panel2;
+            _tablePropertyUserControl.BringToFront();
+            _tablePropertyUserControl.Location = new Point(MainSC.Panel1.ClientSize.Width + 100, 100);
         }
 
         private void DropDown_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
-          var c = tsddbInsertTable.DropDown as tools.ToolStripTableSizeSelector;
-          if (c != null)
-          {
-            c.Selector.SelectedSize = new Size(0, 0);
-            c.Selector.VisibleRange = new Size(10, 10);
-          }
+            var c = tsddbInsertTable.DropDown as tools.ToolStripTableSizeSelector;
+            if (c != null)
+            {
+                c.Selector.SelectedSize = new Size(0, 0);
+                c.Selector.VisibleRange = new Size(10, 10);
+            }
         }
 
         private void CreateRtfTable(int countRows, int countColumns)
         {
-          richText.SelectedRtf = RtfTable.InsertTableInRichTextBox(countRows, countColumns, 16000 / countColumns);
+            richText.SelectedRtf = RtfTable.InsertTableInRichTextBox(countRows, countColumns, 16000 / countColumns);
         }
 
         private void Selector_TableSizeSelected(object sender, tools.TableSizeEventArgs e)
         {
-          CreateRtfTable(e.SelectedSize.Height, e.SelectedSize.Width);
+            CreateRtfTable(e.SelectedSize.Height, e.SelectedSize.Width);
         }
 
-        //        Вопервых импортируем функцию из user32 - SendMessage
-        //        Для этого разумеется не забываем включить в проект (using System.Runtime.InteropServices;)
+        //        Р’РѕРїРµСЂРІС‹С… РёРјРїРѕСЂС‚РёСЂСѓРµРј С„СѓРЅРєС†РёСЋ РёР· user32 - SendMessage
+        //        Р”Р»СЏ СЌС‚РѕРіРѕ СЂР°Р·СѓРјРµРµС‚СЃСЏ РЅРµ Р·Р°Р±С‹РІР°РµРј РІРєР»СЋС‡РёС‚СЊ РІ РїСЂРѕРµРєС‚ (using System.Runtime.InteropServices;)
 
         [DllImport("user32.dll")]
         public static extern int SendMessage(
@@ -164,19 +164,19 @@ namespace FAQ_Net
                long lParam   // second message parameter
                );
 
-        //      Задаём две переменные - они будут обозначать куда мы движемся, в нашей реализации...
+        //      Р—Р°РґР°С‘Рј РґРІРµ РїРµСЂРµРјРµРЅРЅС‹Рµ - РѕРЅРё Р±СѓРґСѓС‚ РѕР±РѕР·РЅР°С‡Р°С‚СЊ РєСѓРґР° РјС‹ РґРІРёР¶РµРјСЃСЏ, РІ РЅР°С€РµР№ СЂРµР°Р»РёР·Р°С†РёРё...
         public bool tree_go_down = false;
         public bool tree_go_up = false;
 
-        //Таймер отправляет сообщения в TreeView
+        //РўР°Р№РјРµСЂ РѕС‚РїСЂР°РІР»СЏРµС‚ СЃРѕРѕР±С‰РµРЅРёСЏ РІ TreeView
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (tree_go_down == true) //Здесь отправляем сообщение на Scroll вниз
+            if (tree_go_down == true) //Р—РґРµСЃСЊ РѕС‚РїСЂР°РІР»СЏРµРј СЃРѕРѕР±С‰РµРЅРёРµ РЅР° Scroll РІРЅРёР·
             {
                 SendMessage(TV1.Handle.ToInt32(), 277, 1, 0);
 
             }
-            if (tree_go_up == true) //Здесь отправляем сообщение на Scroll вверх
+            if (tree_go_up == true) //Р—РґРµСЃСЊ РѕС‚РїСЂР°РІР»СЏРµРј СЃРѕРѕР±С‰РµРЅРёРµ РЅР° Scroll РІРІРµСЂС…
             {
                 SendMessage(TV1.Handle.ToInt32(), 277, 0, 0);
             }
@@ -186,15 +186,15 @@ namespace FAQ_Net
         {
             G.ExecSQLiteQuery(
                        "SELECT id_content,id_category,question,create_date,modif_date,favorite_date " +
-                       "FROM vopros "+
-                       "ORDER BY create_date DESC "+
+                       "FROM vopros " +
+                       "ORDER BY create_date DESC " +
                        "LIMIT 50");
             if (splitContainer1.Panel1Collapsed)
                 splitContainer1.Panel1Collapsed = false;
             if (!splitContainer1.Panel2Collapsed)
                 splitContainer1.Panel2Collapsed = true;
             _questionListControl.AddQuestionsIntoListControl(false);
-            SelectedPathLbl.Text = "Последние добавленные вопросы";
+            SelectedPathLbl.Text = "РџРѕСЃР»РµРґРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅС‹Рµ РІРѕРїСЂРѕСЃС‹";
             _questionListControl.Tag = SelectedPathLbl.Text;
             SelectedId_Razdel = null;
             CountQuestionsVal.Text = _questionListControl.CountItemsTotal.ToString();
@@ -219,25 +219,25 @@ namespace FAQ_Net
             _questionListControl = _questionDgvControl;
             string lastViewSetting = _settingsXml.GetSetting(Constants.LAST_VIEW);
             if (lastViewSetting == _questionListViewControl.ToString())
-              tsmiListView_Click(sender, e);
+                tsmiListView_Click(sender, e);
             else
-              tsmiGridView_Click(sender, e);
+                tsmiGridView_Click(sender, e);
 
-            // В случае, если появится ошибка при выполнении следующей операции, то возможная причина - это
-            // 1) библиотека System.Data.SQLite.dll является 64-х разрядной
-            // 2) в свойствах проекта на вкладке "Сборка" указать свойство "Конечная платформа" = x86
+            // Р’ СЃР»СѓС‡Р°Рµ, РµСЃР»Рё РїРѕСЏРІРёС‚СЃСЏ РѕС€РёР±РєР° РїСЂРё РІС‹РїРѕР»РЅРµРЅРёРё СЃР»РµРґСѓСЋС‰РµР№ РѕРїРµСЂР°С†РёРё, С‚Рѕ РІРѕР·РјРѕР¶РЅР°СЏ РїСЂРёС‡РёРЅР° - СЌС‚Рѕ
+            // 1) Р±РёР±Р»РёРѕС‚РµРєР° System.Data.SQLite.dll СЏРІР»СЏРµС‚СЃСЏ 64-С… СЂР°Р·СЂСЏРґРЅРѕР№
+            // 2) РІ СЃРІРѕР№СЃС‚РІР°С… РїСЂРѕРµРєС‚Р° РЅР° РІРєР»Р°РґРєРµ "РЎР±РѕСЂРєР°" СѓРєР°Р·Р°С‚СЊ СЃРІРѕР№СЃС‚РІРѕ "РљРѕРЅРµС‡РЅР°СЏ РїР»Р°С‚С„РѕСЂРјР°" = x86
             G.CancelRunSecondaryApp();
 
             this.Text = "FAQ.Net v." + System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
             string headerTitle = _settingsXml.GetSetting("HeaderTitle");
             if (!string.IsNullOrEmpty(headerTitle))
-              this.Text = string.Format("{0} [{1}]", headerTitle, this.Text);
+                this.Text = string.Format("{0} [{1}]", headerTitle, this.Text);
             fnd = new FindForm(ref richText);
             fnd.Dock = DockStyle.Bottom;
             fnd.Parent = splitContainer1.Panel2;
             fnd.BorderStyle = BorderStyle.FixedSingle;
             fnd.Hide();
-            TransitionDT.Columns.Add("type",typeof(Int16));
+            TransitionDT.Columns.Add("type", typeof(Int16));
             TransitionDT.Columns.Add("id", typeof(String));
             TransitionDT.Columns.Add("TN", typeof(TreeNode));
             TransitionDT.Rows.Add(0, "", null);
@@ -245,19 +245,19 @@ namespace FAQ_Net
             //DGVQuestions.Columns["QuestionsColumn"].Width = System.Windows.Forms.SystemInformation.PrimaryMonitorSize.Width - MainSC.SplitterDistance - 50;
 
             SqliteDatabase.Create();
-            LastQuestions();                  //Вывод последних добавленных вопросов
+            LastQuestions();                  //Р’С‹РІРѕРґ РїРѕСЃР»РµРґРЅРёС… РґРѕР±Р°РІР»РµРЅРЅС‹С… РІРѕРїСЂРѕСЃРѕРІ
             string lastSortingSetting = _settingsXml.GetSetting(Constants.LAST_SORTING);
             if (lastSortingSetting == SortOrder.Descending.ToString())
-              SortDescTSMI_Click(sender, e);
+                SortDescTSMI_Click(sender, e);
             else
-              SortAscTSMI_Click(sender, e);
+                SortAscTSMI_Click(sender, e);
 
             Timer1.Tick += new System.EventHandler(this.timer1_Tick);
             splitContainer1.Panel2Collapsed = true;
             //splitContainer1.SplitterDistance = 5;
-            //Загружаем разделы нулевого уровня
+            //Р—Р°РіСЂСѓР¶Р°РµРј СЂР°Р·РґРµР»С‹ РЅСѓР»РµРІРѕРіРѕ СѓСЂРѕРІРЅСЏ
             G.GetTreeNodes(TV1, null, false);
-            RefreshCountQuestAndAnswers();    //Вывести кол-во ответов и вопросов
+            RefreshCountQuestAndAnswers();    //Р’С‹РІРµСЃС‚Рё РєРѕР»-РІРѕ РѕС‚РІРµС‚РѕРІ Рё РІРѕРїСЂРѕСЃРѕРІ
             // Set/Get form's size and location values.
             if (formWidth > 0 && formHeight > 0)
             {
@@ -288,7 +288,7 @@ namespace FAQ_Net
             pageSettings.Margins.Right = 50;
             pageSettings.Margins.Top = 100;
             pageSettings.Margins.Bottom = 100;
-//            ruler.RightLimit -= pageSettings.Margins.Left + pageSettings.Margins.Right;
+            //            ruler.RightLimit -= pageSettings.Margins.Left + pageSettings.Margins.Right;
             // Set the Combo Box used by the fonts ToolStripComboBox.
             fonts = selFont.ComboBox;
             // Set the DrawMode and add handler so that we can
@@ -313,77 +313,77 @@ namespace FAQ_Net
 
             CustomDesignControl[] controlsForSettings = new CustomDesignControl[]
             {
-               new CustomDesignControl() { SettingId = "MainFormTabControl", Description = "Вкладки", ObjectControl = TabControl}
-              ,new CustomDesignControl() { SettingId = "CategoryToolStrip", Description = "Разделы.Кнопки", ObjectControl = toolStrip1}
-              ,new CustomDesignControl() { SettingId = "CategoryTreeView", Description = "Разделы.Список", ObjectControl = TV1}
-              ,new CustomDesignControl() { SettingId = "CategoryStatusControl", Description = "Разделы.Статусная строка", ObjectControl = statusStrip2}
-              ,new CustomDesignControl() { SettingId = "ResultSearchDataGridView", Description = "Поиск.Результат", ObjectControl = DGVResultSearch}
-              ,new CustomDesignControl() { SettingId = "FavoriteDataGridView", Description = "Избранное.Результат", ObjectControl = FavoriteDGV}
-              ,new CustomDesignControl() { SettingId = "JournalDataGridView", Description = "Журнал.Результат", ObjectControl = JournalDGV}
+               new CustomDesignControl() { SettingId = "MainFormTabControl", Description = "Р’РєР»Р°РґРєРё", ObjectControl = TabControl}
+              ,new CustomDesignControl() { SettingId = "CategoryToolStrip", Description = "Р Р°Р·РґРµР»С‹.РљРЅРѕРїРєРё", ObjectControl = toolStrip1}
+              ,new CustomDesignControl() { SettingId = "CategoryTreeView", Description = "Р Р°Р·РґРµР»С‹.РЎРїРёСЃРѕРє", ObjectControl = TV1}
+              ,new CustomDesignControl() { SettingId = "CategoryStatusControl", Description = "Р Р°Р·РґРµР»С‹.РЎС‚Р°С‚СѓСЃРЅР°СЏ СЃС‚СЂРѕРєР°", ObjectControl = statusStrip2}
+              ,new CustomDesignControl() { SettingId = "ResultSearchDataGridView", Description = "РџРѕРёСЃРє.Р РµР·СѓР»СЊС‚Р°С‚", ObjectControl = DGVResultSearch}
+              ,new CustomDesignControl() { SettingId = "FavoriteDataGridView", Description = "РР·Р±СЂР°РЅРЅРѕРµ.Р РµР·СѓР»СЊС‚Р°С‚", ObjectControl = FavoriteDGV}
+              ,new CustomDesignControl() { SettingId = "JournalDataGridView", Description = "Р–СѓСЂРЅР°Р».Р РµР·СѓР»СЊС‚Р°С‚", ObjectControl = JournalDGV}
 
-              ,new CustomDesignControl() { SettingId = "QuestionHeader", Description = "Заголовок (справа)", ObjectControl = SelectedPathLbl}
-              ,new CustomDesignControl() { SettingId = "QuestionSplitter", Description = "Разделитель", ObjectControl = splitter1}
-              ,new CustomDesignControl() { SettingId = "QuestionDataGridView", Description = "Список вопросов (сетка)", ObjectControl = _questionDgvControl.DgvControl}
-              ,new CustomDesignControl() { SettingId = "QuestionListView", Description = "Список вопросов (лист)", ObjectControl = _questionListViewControl.QuestionListView}
-              ,new CustomDesignControl() { SettingId = "RtfDocMenu", Description = "Документ.Меню", ObjectControl = menuTop}
-              ,new CustomDesignControl() { SettingId = "RtfDocToolStrip", Description = "Документ.Пиктограммы", ObjectControl = toolsTop}
-              ,new CustomDesignControl() { SettingId = "RtfDocumentControl", Description = "RTF-документ", ObjectControl = richText}
-              ,new CustomDesignControl() { SettingId = "RightStatusControl", Description = "Правая статусная строка", ObjectControl = statusStrip3}
+              ,new CustomDesignControl() { SettingId = "QuestionHeader", Description = "Р—Р°РіРѕР»РѕРІРѕРє (СЃРїСЂР°РІР°)", ObjectControl = SelectedPathLbl}
+              ,new CustomDesignControl() { SettingId = "QuestionSplitter", Description = "Р Р°Р·РґРµР»РёС‚РµР»СЊ", ObjectControl = splitter1}
+              ,new CustomDesignControl() { SettingId = "QuestionDataGridView", Description = "РЎРїРёСЃРѕРє РІРѕРїСЂРѕСЃРѕРІ (СЃРµС‚РєР°)", ObjectControl = _questionDgvControl.DgvControl}
+              ,new CustomDesignControl() { SettingId = "QuestionListView", Description = "РЎРїРёСЃРѕРє РІРѕРїСЂРѕСЃРѕРІ (Р»РёСЃС‚)", ObjectControl = _questionListViewControl.QuestionListView}
+              ,new CustomDesignControl() { SettingId = "RtfDocMenu", Description = "Р”РѕРєСѓРјРµРЅС‚.РњРµРЅСЋ", ObjectControl = menuTop}
+              ,new CustomDesignControl() { SettingId = "RtfDocToolStrip", Description = "Р”РѕРєСѓРјРµРЅС‚.РџРёРєС‚РѕРіСЂР°РјРјС‹", ObjectControl = toolsTop}
+              ,new CustomDesignControl() { SettingId = "RtfDocumentControl", Description = "RTF-РґРѕРєСѓРјРµРЅС‚", ObjectControl = richText}
+              ,new CustomDesignControl() { SettingId = "RightStatusControl", Description = "РџСЂР°РІР°СЏ СЃС‚Р°С‚СѓСЃРЅР°СЏ СЃС‚СЂРѕРєР°", ObjectControl = statusStrip3}
 
-              ,new CustomDesignControl() { SettingId = "FindControlUser", Description = "Панель поиска", ObjectControl = fnd}
-              ,new CustomDesignControl() { SettingId = "MainStatusControl", Description = "Нижняя статусная строка", ObjectControl = status}
+              ,new CustomDesignControl() { SettingId = "FindControlUser", Description = "РџР°РЅРµР»СЊ РїРѕРёСЃРєР°", ObjectControl = fnd}
+              ,new CustomDesignControl() { SettingId = "MainStatusControl", Description = "РќРёР¶РЅСЏСЏ СЃС‚Р°С‚СѓСЃРЅР°СЏ СЃС‚СЂРѕРєР°", ObjectControl = status}
             };
             _appSettingForm = new AppSettingsForm(controlsForSettings);
             MainSC.SplitterDistance = _settingsXml.GetSettingAsInt(Constants.MAIN_SPLITTER_DISTANCE, MainSC.SplitterDistance);
         }
 
-    /// <summary>
-    /// Проверить обновление приложения
-    /// </summary>
-    private void CheckUpdate()
-    {
-      try
-      {
-        System.Net.WebClient webCli = new System.Net.WebClient();
-        using (Stream stream = webCli.OpenRead("https://raw.githubusercontent.com/shmelev-1987/faq_net/master/WordEditor/LastUpdateInfo.xml"))
+        /// <summary>
+        /// РџСЂРѕРІРµСЂРёС‚СЊ РѕР±РЅРѕРІР»РµРЅРёРµ РїСЂРёР»РѕР¶РµРЅРёСЏ
+        /// </summary>
+        private void CheckUpdate()
         {
-          using (StreamReader reader = new StreamReader(stream))
-          {
-            string xmlUpdateText = reader.ReadToEnd();
-            System.Xml.XmlDocument xmlDocUpdate = new System.Xml.XmlDocument();
-            xmlDocUpdate.LoadXml(xmlUpdateText);
-            Version lastVersion = new Version(xmlDocUpdate.SelectSingleNode("//VersionConfig/LastVersion").InnerText);
-            if (lastVersion > System.Reflection.Assembly.GetExecutingAssembly().GetName().Version)
+            try
             {
-              // Отобразить информацию о новой версии
-              UpdateUserControl updateUserControl = new UpdateUserControl();
-              updateUserControl.UpdateInfoText = xmlDocUpdate.SelectSingleNode("//VersionConfig/LatestChanges").InnerText.Replace("\n", Environment.NewLine);
-              updateUserControl.DownloadReleaseUrl = "https://github.com/shmelev-1987/faq_net/releases";
-              updateUserControl.Width = Convert.ToInt32(xmlDocUpdate.SelectSingleNode("//VersionConfig/Width").InnerText);
-              updateUserControl.Height = Convert.ToInt32(xmlDocUpdate.SelectSingleNode("//VersionConfig/Height").InnerText);
-              updateUserControl.Parent = this;
-              updateUserControl.BringToFront();
+                System.Net.WebClient webCli = new System.Net.WebClient();
+                using (Stream stream = webCli.OpenRead("https://raw.githubusercontent.com/shmelev-1987/faq_net/master/WordEditor/LastUpdateInfo.xml"))
+                {
+                    using (StreamReader reader = new StreamReader(stream))
+                    {
+                        string xmlUpdateText = reader.ReadToEnd();
+                        System.Xml.XmlDocument xmlDocUpdate = new System.Xml.XmlDocument();
+                        xmlDocUpdate.LoadXml(xmlUpdateText);
+                        Version lastVersion = new Version(xmlDocUpdate.SelectSingleNode("//VersionConfig/LastVersion").InnerText);
+                        if (lastVersion > System.Reflection.Assembly.GetExecutingAssembly().GetName().Version)
+                        {
+                            // РћС‚РѕР±СЂР°Р·РёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ РЅРѕРІРѕР№ РІРµСЂСЃРёРё
+                            UpdateUserControl updateUserControl = new UpdateUserControl();
+                            updateUserControl.UpdateInfoText = xmlDocUpdate.SelectSingleNode("//VersionConfig/LatestChanges").InnerText.Replace("\n", Environment.NewLine);
+                            updateUserControl.DownloadReleaseUrl = "https://github.com/shmelev-1987/faq_net/releases";
+                            updateUserControl.Width = Convert.ToInt32(xmlDocUpdate.SelectSingleNode("//VersionConfig/Width").InnerText);
+                            updateUserControl.Height = Convert.ToInt32(xmlDocUpdate.SelectSingleNode("//VersionConfig/Height").InnerText);
+                            updateUserControl.Parent = this;
+                            updateUserControl.BringToFront();
+                        }
+                    }
+                }
             }
-          }
+            catch (Exception) { }
         }
-      }
-      catch(Exception) { }
-    }
 
-    private void InitializeUserControls()
-    {
-      // Initialize twips converter.
-      if (tc == null)
-        tc = new TwipsConverter();
+        private void InitializeUserControls()
+        {
+            // Initialize twips converter.
+            if (tc == null)
+                tc = new TwipsConverter();
 
-      // Initialize highlight color menu.
-      if (highlightColor == null)
-        highlightColor = new ColorTable();
-    }
+            // Initialize highlight color menu.
+            if (highlightColor == null)
+                highlightColor = new ColorTable();
+        }
 
         private void delg_AddFonts()
         {
-           // System.Threading.Thread.Sleep(50);
+            // System.Threading.Thread.Sleep(50);
             if (ffNames != null)
             {
                 // Duplicate the most commonly used fonts
@@ -435,7 +435,7 @@ namespace FAQ_Net
          * when you put information in the right place in the registry, you
          * automatically get user isolation when storing settings. Although users
          * can edit the registry, they generally tend not to, and this makes your
-         * settings more stable. Overall, when Microsoft Windows® Logo guidelines
+         * settings more stable. Overall, when Microsoft WindowsВ® Logo guidelines
          * for registry usage are followed, it is a reasonable place to store
          * application settings.
          */
@@ -651,7 +651,7 @@ namespace FAQ_Net
         {
             if (e.Button == MouseButtons.Left)
             {
-//                rightIndentLine.Visible = true;
+                //                rightIndentLine.Visible = true;
                 rightMarginMouseX = Control.MousePosition.X - rightIndentGrip.Left;
                 oldRightMarginX = rightIndentGrip.Left;
             }
@@ -664,98 +664,98 @@ namespace FAQ_Net
 
         private void rightIdentGrip_MouseMove(object sender, MouseEventArgs e)
         {
-//            if (e.Button == MouseButtons.Left)
-//            {
-//                if (Control.MousePosition.X - rightMarginMouseX > leftIndentGrip.Left + 3 && Control.MousePosition.X - rightMarginMouseX < ruler.Width)
-//                {
-//                    rightIndentGrip.Left = Control.MousePosition.X - rightMarginMouseX;
-//                    this.rightIndentLine.Left = rightIndentGrip.Left + HALF_POINT;
-//                }
-//            }
+            //            if (e.Button == MouseButtons.Left)
+            //            {
+            //                if (Control.MousePosition.X - rightMarginMouseX > leftIndentGrip.Left + 3 && Control.MousePosition.X - rightMarginMouseX < ruler.Width)
+            //                {
+            //                    rightIndentGrip.Left = Control.MousePosition.X - rightMarginMouseX;
+            //                    this.rightIndentLine.Left = rightIndentGrip.Left + HALF_POINT;
+            //                }
+            //            }
         }
 
         void rightIndentGrip_MouseUp(object sender, MouseEventArgs e)
         {
-//            if (e.Button == MouseButtons.Left)
-//            {
-//                if (rightIndentGrip.Left <= leftIndentGrip.Left + 6)
-//                {
-//                    rightIndentGrip.Left = leftIndentGrip.Left + 6;
-                    //this.rightMarginLine.Hide();
-                    //this.rightMarginLine.Left = rightIndentGrip.Left + HALF_POINT;
-                    //this.Refresh();
-                    //this.rightMarginLine.Show();
-                    //this.rightMarginLine.Refresh();
-                    //System.Threading.Thread.Sleep(50);
-                    //setTextRightIndent();
-                    //rightMarginLine.Hide();
-                    //return;
-//                }
-//                else if (rightIndentGrip.Left >= ruler.RightLimit + 6)
-//                {
-//                    rightIndentGrip.Left = ruler.RightLimit + 6;
-                    //this.rightMarginLine.Hide();
-                    //this.rightMarginLine.Left = rightIndentGrip.Left + HALF_POINT;
-                    //this.Refresh();
-                    //this.rightMarginLine.Show();
-                    //this.rightMarginLine.Refresh();
-                    //System.Threading.Thread.Sleep(50);
-                    //setTextRightIndent();
-                    //rightMarginLine.Hide();
-                    //return;
-//                }
-//                int tickMarkPointX;
-//                int pointerX = rightIndentGrip.Left + 4;
-//                for (int i = ruler.TotalTickMarks; i >= 0; i--)
-//                {
-//                    tickMarkPointX = (int)(i * ruler.SpacingMultiplier + ruler.Left + 3);
-//                    if (Math.Abs(pointerX - tickMarkPointX) < 7)
-//                    {
-//                        rightIndentGrip.Left = tickMarkPointX - 4;
-//                        this.rightIndentLine.Hide();
-//                        this.rightIndentLine.Left = rightIndentGrip.Left + HALF_POINT;
-//                        this.Refresh();
-//                        this.rightIndentLine.Show();
-//                        this.rightIndentLine.Refresh();
-//                        System.Threading.Thread.Sleep(50);
-//                        setTextRightIndent();
-//                        rightIndentLine.Hide();
-//                        return;
-//                    }
-//                }
-//                MessageBox.Show("Error at rightIndentGrip_MouseUp().  Indent Location not found.", "Beta Error Message");
-                // Unexpected.  Return to old location.
-//                rightIndentGrip.Left = oldRightMarginX;
-//                this.rightIndentLine.Hide();
-//                this.rightIndentLine.Left = rightIndentGrip.Left + HALF_POINT;
-//                this.Refresh();
-//                this.rightIndentLine.Show();
-//                this.rightIndentLine.Refresh();
-//                System.Threading.Thread.Sleep(50);
-//                rightIndentLine.Visible = false;
-//            }
-//            else
-//            {
-                // setFormRightIndent(format.SelectionRightIndentTwips);
-//                MessageBox.Show("Right Indent in Twips = " + format.SelectionRightIndentTwips.ToString(), "Beta Message");
-                //setFormRightIndent();
-//            }
+            //            if (e.Button == MouseButtons.Left)
+            //            {
+            //                if (rightIndentGrip.Left <= leftIndentGrip.Left + 6)
+            //                {
+            //                    rightIndentGrip.Left = leftIndentGrip.Left + 6;
+            //this.rightMarginLine.Hide();
+            //this.rightMarginLine.Left = rightIndentGrip.Left + HALF_POINT;
+            //this.Refresh();
+            //this.rightMarginLine.Show();
+            //this.rightMarginLine.Refresh();
+            //System.Threading.Thread.Sleep(50);
+            //setTextRightIndent();
+            //rightMarginLine.Hide();
+            //return;
+            //                }
+            //                else if (rightIndentGrip.Left >= ruler.RightLimit + 6)
+            //                {
+            //                    rightIndentGrip.Left = ruler.RightLimit + 6;
+            //this.rightMarginLine.Hide();
+            //this.rightMarginLine.Left = rightIndentGrip.Left + HALF_POINT;
+            //this.Refresh();
+            //this.rightMarginLine.Show();
+            //this.rightMarginLine.Refresh();
+            //System.Threading.Thread.Sleep(50);
+            //setTextRightIndent();
+            //rightMarginLine.Hide();
+            //return;
+            //                }
+            //                int tickMarkPointX;
+            //                int pointerX = rightIndentGrip.Left + 4;
+            //                for (int i = ruler.TotalTickMarks; i >= 0; i--)
+            //                {
+            //                    tickMarkPointX = (int)(i * ruler.SpacingMultiplier + ruler.Left + 3);
+            //                    if (Math.Abs(pointerX - tickMarkPointX) < 7)
+            //                    {
+            //                        rightIndentGrip.Left = tickMarkPointX - 4;
+            //                        this.rightIndentLine.Hide();
+            //                        this.rightIndentLine.Left = rightIndentGrip.Left + HALF_POINT;
+            //                        this.Refresh();
+            //                        this.rightIndentLine.Show();
+            //                        this.rightIndentLine.Refresh();
+            //                        System.Threading.Thread.Sleep(50);
+            //                        setTextRightIndent();
+            //                        rightIndentLine.Hide();
+            //                        return;
+            //                    }
+            //                }
+            //                MessageBox.Show("Error at rightIndentGrip_MouseUp().  Indent Location not found.", "Beta Error Message");
+            // Unexpected.  Return to old location.
+            //                rightIndentGrip.Left = oldRightMarginX;
+            //                this.rightIndentLine.Hide();
+            //                this.rightIndentLine.Left = rightIndentGrip.Left + HALF_POINT;
+            //                this.Refresh();
+            //                this.rightIndentLine.Show();
+            //                this.rightIndentLine.Refresh();
+            //                System.Threading.Thread.Sleep(50);
+            //                rightIndentLine.Visible = false;
+            //            }
+            //            else
+            //            {
+            // setFormRightIndent(format.SelectionRightIndentTwips);
+            //                MessageBox.Show("Right Indent in Twips = " + format.SelectionRightIndentTwips.ToString(), "Beta Message");
+            //setFormRightIndent();
+            //            }
         }
 
         private void setTextRightIndent()
         {
-//            riValue = tc.ConvertPixelsToHTwips((((int)ruler.RightMargin - this.rightIndentLine.Left) + (rightIndentOffset - pageSettings.Margins.Left - pageSettings.Margins.Right)));
-//            format.SelectionRightIndentTwips = riValue;
+            //            riValue = tc.ConvertPixelsToHTwips((((int)ruler.RightMargin - this.rightIndentLine.Left) + (rightIndentOffset - pageSettings.Margins.Left - pageSettings.Margins.Right)));
+            //            format.SelectionRightIndentTwips = riValue;
         }
 
         private void setFormRightIndent()
         {
-//            rightIndentVal = (int)ruler.RightMargin - tc.ConvertHTwipsToPixels(format.SelectionRightIndentTwips - rightIndentOffset) - pageSettings.Margins.Left - pageSettings.Margins.Right + rightIndentOffset + HALF_POINT - 1;
-//            if (rightIndentLine.Left != rightIndentVal)
-//            {
-//                this.rightIndentLine.Left = rightIndentVal;
-//                this.rightIndentGrip.Left = rightIndentLine.Left - HALF_POINT;
-//            }
+            //            rightIndentVal = (int)ruler.RightMargin - tc.ConvertHTwipsToPixels(format.SelectionRightIndentTwips - rightIndentOffset) - pageSettings.Margins.Left - pageSettings.Margins.Right + rightIndentOffset + HALF_POINT - 1;
+            //            if (rightIndentLine.Left != rightIndentVal)
+            //            {
+            //                this.rightIndentLine.Left = rightIndentVal;
+            //                this.rightIndentGrip.Left = rightIndentLine.Left - HALF_POINT;
+            //            }
         }
 
         private void Fonts_SelectionChangeCommitted(object sender, EventArgs e)
@@ -798,9 +798,9 @@ namespace FAQ_Net
             //string CurrentID_Content = G.ConvertEncoding(ID_ContentTSSL.Text, 65001, 20127).Replace("'","''");
             StringBuilder sbSql = new StringBuilder();
             if (G.ExecSQLiteQuery("SELECT COUNT(1) FROM otvet WHERE id_content=" + ID_ContentTSSL.Text) &&
-                Convert.ToInt32(G.DT.Rows[0][0].ToString())==0)
+                Convert.ToInt32(G.DT.Rows[0][0].ToString()) == 0)
             {
-                #region Добавить ответ в БД
+                #region Р”РѕР±Р°РІРёС‚СЊ РѕС‚РІРµС‚ РІ Р‘Р”
                 sbSql.AppendLine(string.Format("INSERT INTO otvet (id_content, answer_txt, answer_rtf, create_date, modif_date) VALUES ({0},'{1}','{2}','{3}',NULL);"
                     , ID_ContentTSSL.Text                          // id_content
                     , richText.Text.Replace("'", "''")             // answer_txt
@@ -811,13 +811,13 @@ namespace FAQ_Net
                 {
                     saveFile.Enabled = false;
                     save.Enabled = false;
-                    CountAnswLbl.Text = (Convert.ToInt32(CountAnswLbl.Text)+1).ToString();
+                    CountAnswLbl.Text = (Convert.ToInt32(CountAnswLbl.Text) + 1).ToString();
                 }
-                #endregion Добавить ответ в БД
+                #endregion Р”РѕР±Р°РІРёС‚СЊ РѕС‚РІРµС‚ РІ Р‘Р”
             }
             else
             {
-                #region Изменить ответ в БД
+                #region РР·РјРµРЅРёС‚СЊ РѕС‚РІРµС‚ РІ Р‘Р”
                 sbSql.AppendLine(string.Format("UPDATE otvet SET answer_rtf='{0}',answer_txt='{1}',modif_date='{2}' WHERE id_content={3};update vopros set modif_date='{2}' where id_content={3};"
                   , richText.Rtf.Replace("'", "''")
                   , richText.Text.Replace("'", "''")
@@ -830,7 +830,7 @@ namespace FAQ_Net
                     saveFile.Enabled = false;
                     save.Enabled = false;
                 }
-                #endregion Изменить ответ в БД
+                #endregion РР·РјРµРЅРёС‚СЊ РѕС‚РІРµС‚ РІ Р‘Р”
             }
         }
 
@@ -900,8 +900,8 @@ namespace FAQ_Net
                     //alignJustify.Checked = false;
                     richText.SelectionAlignment = HorizontalAlignment.Right;
                     break;
-                // Этот код не работает по непонятным причинам, поэтому кнопка "выравнивания по ширине" скрыта
-                // скорее всего это связано с отсутствием свойства HorizontalAlignment.Justify в .NET
+                // Р­С‚РѕС‚ РєРѕРґ РЅРµ СЂР°Р±РѕС‚Р°РµС‚ РїРѕ РЅРµРїРѕРЅСЏС‚РЅС‹Рј РїСЂРёС‡РёРЅР°Рј, РїРѕСЌС‚РѕРјСѓ РєРЅРѕРїРєР° "РІС‹СЂР°РІРЅРёРІР°РЅРёСЏ РїРѕ С€РёСЂРёРЅРµ" СЃРєСЂС‹С‚Р°
+                // СЃРєРѕСЂРµРµ РІСЃРµРіРѕ СЌС‚Рѕ СЃРІСЏР·Р°РЅРѕ СЃ РѕС‚СЃСѓС‚СЃС‚РІРёРµРј СЃРІРѕР№СЃС‚РІР° HorizontalAlignment.Justify РІ .NET
                 //case "alignJustify":
                 //    alignLeft.Checked = false;
                 //    alignCenter.Checked = false;
@@ -986,7 +986,7 @@ namespace FAQ_Net
             }
             printRtf = new PrintRichText(ref richText, pageSettings);
             printRtf.PageSetupDlg();
-//            ruler.RightLimit = PORTRAIT_RIGHT_LIMIT - pageSettings.Margins.Left - pageSettings.Margins.Right;
+            //            ruler.RightLimit = PORTRAIT_RIGHT_LIMIT - pageSettings.Margins.Left - pageSettings.Margins.Right;
             setFormRightIndent();
         }
 
@@ -1142,8 +1142,8 @@ namespace FAQ_Net
                 {
                     if (saveFile.Enabled)
                     {
-                        DialogResult result = MessageBox.Show("Сохранить изменения в ответе на вопрос?",
-                            "Подтверждение сохранения", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                        DialogResult result = MessageBox.Show("РЎРѕС…СЂР°РЅРёС‚СЊ РёР·РјРµРЅРµРЅРёСЏ РІ РѕС‚РІРµС‚Рµ РЅР° РІРѕРїСЂРѕСЃ?",
+                            "РџРѕРґС‚РІРµСЂР¶РґРµРЅРёРµ СЃРѕС…СЂР°РЅРµРЅРёСЏ", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                         if (result == DialogResult.Yes)
                         {
                             Save_Click(sender, e);
@@ -1188,7 +1188,7 @@ namespace FAQ_Net
         private void HighLightColors_Click(object sender, EventArgs e)
         {
             selectedColor = Color.FromName(((ToolStripMenuItem)sender).Text);
-            selectColor.ToolTipText = "Цвет текста (" + selectedColor.Name + ")";
+            selectColor.ToolTipText = "Р¦РІРµС‚ С‚РµРєСЃС‚Р° (" + selectedColor.Name + ")";
             richText.SelectionColor = selectedColor;
             toolsTop.Refresh();
             richText.Focus();
@@ -1197,7 +1197,7 @@ namespace FAQ_Net
         private void HighLight_DropDownItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             richText.SelectionBackColor = highlightColor.SelectedColor;
-            highLight.ToolTipText = "Цвет выделения текста (" + highlightColor.ToolTipText + ")";
+            highLight.ToolTipText = "Р¦РІРµС‚ РІС‹РґРµР»РµРЅРёСЏ С‚РµРєСЃС‚Р° (" + highlightColor.ToolTipText + ")";
         }
 
         private void HighLight_ButtonClick(object sender, EventArgs e)
@@ -1274,9 +1274,9 @@ namespace FAQ_Net
             RestartApplicationCanceled = false;
             _settingsXml.SaveFormPosition(this);
             _settingsXml.SetSetting(Constants.MAIN_SPLITTER_DISTANCE, MainSC.SplitterDistance.ToString());
-            if (splitContainer1.Panel2Collapsed==false && saveFile.Enabled)
+            if (splitContainer1.Panel2Collapsed == false && saveFile.Enabled)
             {
-                DialogResult res = MessageBox.Show("Сохранить изменения ответа на вопрос?", this.Text,
+                DialogResult res = MessageBox.Show("РЎРѕС…СЂР°РЅРёС‚СЊ РёР·РјРµРЅРµРЅРёСЏ РѕС‚РІРµС‚Р° РЅР° РІРѕРїСЂРѕСЃ?", this.Text,
                     MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 if (res == DialogResult.Yes)
                 {
@@ -1284,10 +1284,10 @@ namespace FAQ_Net
                 }
                 else
                     if (res == DialogResult.Cancel)
-                    {
-                        e.Cancel = true;
-                        RestartApplicationCanceled = true;
-                    }
+                {
+                    e.Cancel = true;
+                    RestartApplicationCanceled = true;
+                }
             }
         }
 
@@ -1340,18 +1340,18 @@ namespace FAQ_Net
             fd.Dispose();
         }
 
-    private void RichMenu_Click(object sender, EventArgs e)
-    {
-      switch (((ToolStripMenuItem)(sender)).Name)
-      {
-        case "fontRichText":
-          font.PerformClick();
-          break;
-        case "printRichText":
-          print.PerformClick();
-          break;
-      }
-    }
+        private void RichMenu_Click(object sender, EventArgs e)
+        {
+            switch (((ToolStripMenuItem)(sender)).Name)
+            {
+                case "fontRichText":
+                    font.PerformClick();
+                    break;
+                case "printRichText":
+                    print.PerformClick();
+                    break;
+            }
+        }
 
         private void lineSpace1_Click(object sender, EventArgs e)
         {
@@ -1384,7 +1384,7 @@ namespace FAQ_Net
         {
             Application.Exit();
         }
-    
+
         private void lineSpacing_ButtonClick(object sender, EventArgs e)
         {
             byte lineSp = 0;
@@ -1617,7 +1617,7 @@ namespace FAQ_Net
             if (TV1.SelectedNode != null)
                 G.CreateCategory(TV1, TV1.SelectedNode);
             else
-                MessageBox.Show("Выберите раздел к которому нужно создать подраздел","Не выбран раздел!",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                MessageBox.Show("Р’С‹Р±РµСЂРёС‚Рµ СЂР°Р·РґРµР» Рє РєРѕС‚РѕСЂРѕРјСѓ РЅСѓР¶РЅРѕ СЃРѕР·РґР°С‚СЊ РїРѕРґСЂР°Р·РґРµР»", "РќРµ РІС‹Р±СЂР°РЅ СЂР°Р·РґРµР»!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         private void NodeSelect(TreeNode TN)
@@ -1634,9 +1634,9 @@ namespace FAQ_Net
                 //string RazdelId = G.ConvertEncoding(e.Node.Name, 65001, 20127);
                 string orderBySql = " ORDER BY question ASC";
                 if (lastOrderByDesc)
-                  orderBySql = " ORDER BY question DESC";
+                    orderBySql = " ORDER BY question DESC";
                 G.ExecSQLiteQuery("SELECT id_content,id_category,question,create_date,modif_date,favorite_date FROM vopros WHERE id_category=" + TN.Name + orderBySql);
-                _questionListControl.AddQuestionsIntoListControl(false);  //Добавить список вопросов
+                _questionListControl.AddQuestionsIntoListControl(false);  //Р”РѕР±Р°РІРёС‚СЊ СЃРїРёСЃРѕРє РІРѕРїСЂРѕСЃРѕРІ
                 //DGVQuestions.DataSource = G.DT;
                 CountQuestionsVal.Text = G.DT.Rows.Count.ToString();
                 SelectedPathLbl.Text = TN.FullPath;
@@ -1671,7 +1671,7 @@ namespace FAQ_Net
         {
             if (e.Node.Nodes[0].Name == "null")
                 e.Node.Nodes.Clear();
-            G.GetTreeNodes(TV1, e.Node,false);
+            G.GetTreeNodes(TV1, e.Node, false);
         }
 
         private void CreateQuestionTSB_Click(object sender, EventArgs e)
@@ -1685,11 +1685,11 @@ namespace FAQ_Net
                 else
                     G.MaxIdVopros = 1;
             }
-            //Создание вопроса
+            //РЎРѕР·РґР°РЅРёРµ РІРѕРїСЂРѕСЃР°
             if (SelectedId_Razdel != null)
             {
                 G.Question = "";
-                if (G.InputBox("Создание вопроса", "Наименование вопроса", ref G.Question) == DialogResult.OK)
+                if (G.InputBox("РЎРѕР·РґР°РЅРёРµ РІРѕРїСЂРѕСЃР°", "РќР°РёРјРµРЅРѕРІР°РЅРёРµ РІРѕРїСЂРѕСЃР°", ref G.Question) == DialogResult.OK)
                 {
                     //G.Question = G.ConvertEncoding(G.Question, 65001, 20127);
                     if (G.ExecSQLiteQuery(String.Format("INSERT INTO vopros (id_content,id_category,question,create_date) values ({0},{1},'{2}','{3}')",
@@ -1703,12 +1703,12 @@ namespace FAQ_Net
                         //TV1_AfterSelect(sender, new TreeViewEventArgs(TV1.SelectedNode));
                         GetQuestionAndAnswer(G.MaxIdVopros.ToString());
                         G.MaxIdVopros += 1;
-                        CountQuestLbl.Text = (Convert.ToInt32(CountQuestLbl.Text)+1).ToString();
+                        CountQuestLbl.Text = (Convert.ToInt32(CountQuestLbl.Text) + 1).ToString();
                     }
                 }
             }
             else
-                MessageBox.Show("Выберите раздел в котором нужно создать вопрос", "Не выбран раздел!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Р’С‹Р±РµСЂРёС‚Рµ СЂР°Р·РґРµР» РІ РєРѕС‚РѕСЂРѕРј РЅСѓР¶РЅРѕ СЃРѕР·РґР°С‚СЊ РІРѕРїСЂРѕСЃ", "РќРµ РІС‹Р±СЂР°РЅ СЂР°Р·РґРµР»!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         private void EditQuestionTSMI_Click(object sender, EventArgs e)
@@ -1716,7 +1716,7 @@ namespace FAQ_Net
             if (_questionListControl.CountItemsSelected == 1)
             {
                 G.Question = _questionListControl.SelectedQuestionText;
-                if (G.InputBox("Редактирование вопроса", "Наименование вопроса", ref G.Question) == DialogResult.OK)
+                if (G.InputBox("Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РІРѕРїСЂРѕСЃР°", "РќР°РёРјРµРЅРѕРІР°РЅРёРµ РІРѕРїСЂРѕСЃР°", ref G.Question) == DialogResult.OK)
                 {
                     //G.Question = G.ConvertEncoding(G.Question, 65001, 20127);
                     if (G.ExecSQLiteQuery(
@@ -1735,13 +1735,13 @@ namespace FAQ_Net
         {
             if (_questionListControl.CountItemsSelected == 1)
             {
-                if (MessageBox.Show("Удаление вопроса из этого списка приведет к удалению также и ответа на него! Продолжить", "Удалить вопрос с ответом", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("РЈРґР°Р»РµРЅРёРµ РІРѕРїСЂРѕСЃР° РёР· СЌС‚РѕРіРѕ СЃРїРёСЃРєР° РїСЂРёРІРµРґРµС‚ Рє СѓРґР°Р»РµРЅРёСЋ С‚Р°РєР¶Рµ Рё РѕС‚РІРµС‚Р° РЅР° РЅРµРіРѕ! РџСЂРѕРґРѕР»Р¶РёС‚СЊ", "РЈРґР°Р»РёС‚СЊ РІРѕРїСЂРѕСЃ СЃ РѕС‚РІРµС‚РѕРј", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     if (G.ExecSQLiteQuery("DELETE FROM otvet WHERE id_content=" + _questionListControl.SelectedQuestionId.ToString()) &&
                         G.ExecSQLiteQuery("DELETE FROM vopros WHERE id_content=" + _questionListControl.SelectedQuestionId.ToString()))
                     {
                         _questionListControl.RemoveFirstSelectedItem();
-                        CountQuestLbl.Text = (Convert.ToInt32(CountQuestLbl.Text)-1).ToString();
+                        CountQuestLbl.Text = (Convert.ToInt32(CountQuestLbl.Text) - 1).ToString();
                     }
                 }
             }
@@ -1749,11 +1749,11 @@ namespace FAQ_Net
 
         private void RefreshTSB_Click(object sender, EventArgs e)
         {
-            //Вывод корневых узлов
+            //Р’С‹РІРѕРґ РєРѕСЂРЅРµРІС‹С… СѓР·Р»РѕРІ
             G.GetTreeNodes(TV1, null, false);
         }
 
-        #region Вывод выбранного вопроса с ответом
+        #region Р’С‹РІРѕРґ РІС‹Р±СЂР°РЅРЅРѕРіРѕ РІРѕРїСЂРѕСЃР° СЃ РѕС‚РІРµС‚РѕРј
         //private void GetQuestionAndAnswer(string DGVSource, string QuestionColName, string ID_ContentColName, string FavoriteDateColumn)
         private void GetQuestionAndAnswer(string id_content)
         {
@@ -1796,7 +1796,7 @@ namespace FAQ_Net
             }
             //CurrentId_Content = G.ConvertEncoding(CurrentId_Content, 20127, 65001);
         }
-        #endregion Вывод выбранного вопроса с ответом
+        #endregion Р’С‹РІРѕРґ РІС‹Р±СЂР°РЅРЅРѕРіРѕ РІРѕРїСЂРѕСЃР° СЃ РѕС‚РІРµС‚РѕРј
 
         //private void DGVQuestions_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         //{
@@ -1809,24 +1809,24 @@ namespace FAQ_Net
         //            "QuestionsFavoriteDateColumn");
         //    }
         //    else
-        //        MessageBox.Show("В выбранном разделе нет вопросов. Добавьте вопрос.");
+        //        MessageBox.Show("Р’ РІС‹Р±СЂР°РЅРЅРѕРј СЂР°Р·РґРµР»Рµ РЅРµС‚ РІРѕРїСЂРѕСЃРѕРІ. Р”РѕР±Р°РІСЊС‚Рµ РІРѕРїСЂРѕСЃ.");
         //}
 
         private void ShowAnswerTSMI_Click(object sender, EventArgs e)
         {
-          int countItemsTotal = _questionListControl.CountItemsTotal;
-          int countItemsSelected = _questionListControl.CountItemsSelected;
-          string tag = _questionListControl.SelectedQuestionId.ToString();
+            int countItemsTotal = _questionListControl.CountItemsTotal;
+            int countItemsSelected = _questionListControl.CountItemsSelected;
+            string tag = _questionListControl.SelectedQuestionId.ToString();
 
-          if (countItemsSelected == 1)
-          {
-            GetQuestionAndAnswer(tag);
-            AddRowInHistory(2);
-          }
-          else if (countItemsTotal == 0)
-            MessageBox.Show("В выбранном разделе нет вопросов. Добавьте вопрос.");
-          else
-            MessageBox.Show("Выберите раздел из списка.");
+            if (countItemsSelected == 1)
+            {
+                GetQuestionAndAnswer(tag);
+                AddRowInHistory(2);
+            }
+            else if (countItemsTotal == 0)
+                MessageBox.Show("Р’ РІС‹Р±СЂР°РЅРЅРѕРј СЂР°Р·РґРµР»Рµ РЅРµС‚ РІРѕРїСЂРѕСЃРѕРІ. Р”РѕР±Р°РІСЊС‚Рµ РІРѕРїСЂРѕСЃ.");
+            else
+                MessageBox.Show("Р’С‹Р±РµСЂРёС‚Рµ СЂР°Р·РґРµР» РёР· СЃРїРёСЃРєР°.");
         }
 
         private string AddSelect(string Sql, string SearchText)
@@ -1836,10 +1836,10 @@ namespace FAQ_Net
                 Sql += "(LOWER(question) LIKE '%" + SearchText + "%' OR LOWER(answer_txt) LIKE '%" + SearchText + "%')";
             else
                 if (SearchQuestRB.Checked)
-                    Sql += "(LOWER(question) LIKE '%" + SearchText + "%')";
-                else
+                Sql += "(LOWER(question) LIKE '%" + SearchText + "%')";
+            else
                     if (SearchAnswRB.Checked)
-                        Sql += "(LOWER(COALESCE(answer_txt,answer_rtf)) LIKE '%" + SearchText + "%')";
+                Sql += "(LOWER(COALESCE(answer_txt,answer_rtf)) LIKE '%" + SearchText + "%')";
             return Sql;
         }
 
@@ -1877,8 +1877,8 @@ namespace FAQ_Net
             Sql = AddSelect(Sql, SearchText);
             G.ExecSQLiteQuery(Sql);
             DGVResultSearch.DataSource = G.DT;
-            label3.Text = G.DT.Rows.Count.ToString() + " записей";
-            label2.Visible = 
+            label3.Text = G.DT.Rows.Count.ToString() + " Р·Р°РїРёСЃРµР№";
+            label2.Visible =
                 label3.Visible = true;
         }
 
@@ -1890,7 +1890,7 @@ namespace FAQ_Net
                 AddRowInHistory(2);
             }
         }
-    
+
         private void AddInFavoritesTSB_Click(object sender, EventArgs e)
         {
             if (AddInFavoritesTSB.Checked)
@@ -1960,7 +1960,7 @@ namespace FAQ_Net
             if (TV1.SelectedNode != null)
             {
                 string Category = TV1.SelectedNode.Text;
-                if (G.InputBox("Редактирование раздела", "Наименование раздела", ref Category) == DialogResult.OK)
+                if (G.InputBox("Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ СЂР°Р·РґРµР»Р°", "РќР°РёРјРµРЅРѕРІР°РЅРёРµ СЂР°Р·РґРµР»Р°", ref Category) == DialogResult.OK)
                 {
                     //Category = G.ConvertEncoding(Category,65001,20127);
                     if (G.ExecSQLiteQuery(
@@ -1971,7 +1971,7 @@ namespace FAQ_Net
                 }
             }
             else
-                MessageBox.Show("Выберите раздел из списка");
+                MessageBox.Show("Р’С‹Р±РµСЂРёС‚Рµ СЂР°Р·РґРµР» РёР· СЃРїРёСЃРєР°");
         }
 
         private void TV1_ItemDrag(object sender, ItemDragEventArgs e)
@@ -1979,7 +1979,7 @@ namespace FAQ_Net
             // Move the dragged node when the left mouse button is used.
             if (e.Button == MouseButtons.Left)
             {
-                //Здесь начинаем перетягивать ветку.
+                //Р—РґРµСЃСЊ РЅР°С‡РёРЅР°РµРј РїРµСЂРµС‚СЏРіРёРІР°С‚СЊ РІРµС‚РєСѓ.
                 Timer1.Enabled = true;
                 TreeNode aNode = (TreeNode)e.Item;
                 StartNode = new TreeNode();
@@ -1990,7 +1990,7 @@ namespace FAQ_Net
                 DoDragDrop(aNode, DragDropEffects.Copy);
             }
         }
-        
+
         private void TV1_MouseDown(object sender, MouseEventArgs e)
         {
             Point pt = new Point(e.X, e.Y);
@@ -2002,17 +2002,17 @@ namespace FAQ_Net
             e.Effect = DragDropEffects.Move;
         }
 
-    private void ResetTNDragOver(bool SelectTNDragOver)
-    {
-      if (TNDragOver != null)
-      {
-        TNDragOver.BackColor = TV1.BackColor;
-        if (SelectTNDragOver)
-          TV1.SelectedNode = TNDragOver;
-        TNDragOver = null;
-        DGVQuestionsDrag = false;
-      }
-    }
+        private void ResetTNDragOver(bool SelectTNDragOver)
+        {
+            if (TNDragOver != null)
+            {
+                TNDragOver.BackColor = TV1.BackColor;
+                if (SelectTNDragOver)
+                    TV1.SelectedNode = TNDragOver;
+                TNDragOver = null;
+                DGVQuestionsDrag = false;
+            }
+        }
 
         private void TV1_DragDrop(object sender, DragEventArgs e)
         {
@@ -2024,7 +2024,7 @@ namespace FAQ_Net
             TreeNode targetNode = TV1.GetNodeAt(targetPoint);
 
             if (StartNode != null &&
-                targetNode!= null)
+                targetNode != null)
             {
                 // Retrieve the node that was dragged.
                 TreeNode draggedNode = (TreeNode)e.Data.GetData(typeof(TreeNode));
@@ -2035,7 +2035,7 @@ namespace FAQ_Net
                 {
                     // If it is a move operation, remove the node from its current 
                     // location and add it to the node at the drop location.
-                    if (MessageBox.Show("Переместить раздел '" + draggedNode.Text + "' в '" + targetNode.Text + "'?", "Подтверждения перемещения раздела", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    if (MessageBox.Show("РџРµСЂРµРјРµСЃС‚РёС‚СЊ СЂР°Р·РґРµР» '" + draggedNode.Text + "' РІ '" + targetNode.Text + "'?", "РџРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ РїРµСЂРµРјРµС‰РµРЅРёСЏ СЂР°Р·РґРµР»Р°", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         StringBuilder sbSql = new StringBuilder();
                         sbSql.AppendLine(string.Format("UPDATE category SET parent_category='{0}' WHERE id_category='{1}';"
@@ -2050,37 +2050,37 @@ namespace FAQ_Net
                             targetNode.Nodes.Add(StartNode);
                             targetNode.Expand();
                         }
-                        ResetTNDragOver(true);  //Сброс назначенного узла
+                        ResetTNDragOver(true);  //РЎР±СЂРѕСЃ РЅР°Р·РЅР°С‡РµРЅРЅРѕРіРѕ СѓР·Р»Р°
                     }
                     else
-                        ResetTNDragOver(false);  //Сброс назначенного узла
+                        ResetTNDragOver(false);  //РЎР±СЂРѕСЃ РЅР°Р·РЅР°С‡РµРЅРЅРѕРіРѕ СѓР·Р»Р°
                 }
                 else
-                    ResetTNDragOver(false);  //Сброс назначенного узла
+                    ResetTNDragOver(false);  //РЎР±СЂРѕСЃ РЅР°Р·РЅР°С‡РµРЅРЅРѕРіРѕ СѓР·Р»Р°
             }
             else
                 if (!DGVQuestionsDrag)
+            {
+                if (MessageBox.Show("РџРµСЂРµРјРµСЃС‚РёС‚СЊ РІРѕРїСЂРѕСЃ '" + SelectedPathLbl.Text + "' РІ СЂР°Р·РґРµР» '" + targetNode.Text + "'?", "РџРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ РїРµСЂРµРјРµС‰РµРЅРёСЏ РІРѕРїСЂРѕСЃР°", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    if (MessageBox.Show("Переместить вопрос '" + SelectedPathLbl.Text + "' в раздел '" + targetNode.Text + "'?", "Подтверждения перемещения вопроса", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        G.ExecSQLiteQuery("UPDATE vopros SET id_category='" + targetNode.Name.Replace("'", "''") + "' WHERE id_content='" + ID_ContentTSSL.Text.Replace("'", "''") + "'");
-                        ResetTNDragOver(true);  //Сброс назначенного узла
-                    }
-                    else
-                        ResetTNDragOver(false);  //Сброс назначенного узла
+                    G.ExecSQLiteQuery("UPDATE vopros SET id_category='" + targetNode.Name.Replace("'", "''") + "' WHERE id_content='" + ID_ContentTSSL.Text.Replace("'", "''") + "'");
+                    ResetTNDragOver(true);  //РЎР±СЂРѕСЃ РЅР°Р·РЅР°С‡РµРЅРЅРѕРіРѕ СѓР·Р»Р°
                 }
                 else
+                    ResetTNDragOver(false);  //РЎР±СЂРѕСЃ РЅР°Р·РЅР°С‡РµРЅРЅРѕРіРѕ СѓР·Р»Р°
+            }
+            else
+            {
+                if (_questionListControl.CountItemsSelected == 1 &&
+                    targetNode != null &&
+                    MessageBox.Show("РџРµСЂРµРјРµСЃС‚РёС‚СЊ РІРѕРїСЂРѕСЃ '" + _questionListControl.SelectedQuestionText + "' РІ СЂР°Р·РґРµР» '" + targetNode.Text + "'?", "РџРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ РїРµСЂРµРјРµС‰РµРЅРёСЏ РІРѕРїСЂРѕСЃР°", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    if (_questionListControl.CountItemsSelected==1 &&
-                        targetNode != null &&
-                        MessageBox.Show("Переместить вопрос '" + _questionListControl.SelectedQuestionText + "' в раздел '" + targetNode.Text + "'?", "Подтверждения перемещения вопроса", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                    {
-                        G.ExecSQLiteQuery("UPDATE vopros SET id_category='" + targetNode.Name.Replace("'", "''") + "' WHERE id_content='" + _questionListControl.SelectedQuestionId.ToString().Replace("'", "''") + "'");
-                        ResetTNDragOver(true);  //Сброс назначенного узла
-                    }
-                    else
-                        ResetTNDragOver(false);  //Сброс назначенного узла
+                    G.ExecSQLiteQuery("UPDATE vopros SET id_category='" + targetNode.Name.Replace("'", "''") + "' WHERE id_content='" + _questionListControl.SelectedQuestionId.ToString().Replace("'", "''") + "'");
+                    ResetTNDragOver(true);  //РЎР±СЂРѕСЃ РЅР°Р·РЅР°С‡РµРЅРЅРѕРіРѕ СѓР·Р»Р°
                 }
+                else
+                    ResetTNDragOver(false);  //РЎР±СЂРѕСЃ РЅР°Р·РЅР°С‡РµРЅРЅРѕРіРѕ СѓР·Р»Р°
+            }
         }
 
         TreeNode TNDragOver;
@@ -2088,12 +2088,12 @@ namespace FAQ_Net
         {
             e.Effect = DragDropEffects.Link;
 
-            //Определяем где форма и начальные координаты.
+            //РћРїСЂРµРґРµР»СЏРµРј РіРґРµ С„РѕСЂРјР° Рё РЅР°С‡Р°Р»СЊРЅС‹Рµ РєРѕРѕСЂРґРёРЅР°С‚С‹.
 
-            int top_y = this.Top + 30;//30 - высота заголовка формы.
+            int top_y = this.Top + 30;//30 - РІС‹СЃРѕС‚Р° Р·Р°РіРѕР»РѕРІРєР° С„РѕСЂРјС‹.
             int top_x = this.Left;
 
-            //Скролл вверх.
+            //РЎРєСЂРѕР»Р» РІРІРµСЂС….
 
             if (e.Y < 150 + top_y)
             {
@@ -2114,7 +2114,7 @@ namespace FAQ_Net
                 tree_go_down = false;
             }
 
-            //Скролл вниз.
+            //РЎРєСЂРѕР»Р» РІРЅРёР·.
             if (e.Y > TV1.Height - 150)
             {
                 Timer1.Interval = 100;
@@ -2134,7 +2134,7 @@ namespace FAQ_Net
                 tree_go_down = true;
             }
 
-            //Стоп машина!
+            //РЎС‚РѕРї РјР°С€РёРЅР°!
             if (e.Y < TV1.Height - 150)
             {
                 tree_go_down = false;
@@ -2152,9 +2152,9 @@ namespace FAQ_Net
             TreeNode TN = TV1.GetNodeAt(targetPoint);
 
             if (TNDragOver != TN &&
-                TN!=null)
+                TN != null)
             {
-                if (TNDragOver!=null)
+                if (TNDragOver != null)
                     TNDragOver.BackColor = TV1.BackColor;
                 TNDragOver = TN;
                 TNDragOver.BackColor = System.Drawing.Color.LimeGreen;
@@ -2213,19 +2213,19 @@ namespace FAQ_Net
             {
                 if (e.Clicks == 2)
                 {
-                        G.Question = SelectedPathLbl.Text;
-                        if (G.InputBox("Редактирование вопроса", "Наименование вопроса", ref G.Question) == DialogResult.OK)
+                    G.Question = SelectedPathLbl.Text;
+                    if (G.InputBox("Р РµРґР°РєС‚РёСЂРѕРІР°РЅРёРµ РІРѕРїСЂРѕСЃР°", "РќР°РёРјРµРЅРѕРІР°РЅРёРµ РІРѕРїСЂРѕСЃР°", ref G.Question) == DialogResult.OK)
+                    {
+                        //G.Question = G.ConvertEncoding(G.Question,65001,20127);
+                        if (G.ExecSQLiteQuery(
+                            "UPDATE vopros " +
+                            "SET question='" + G.Question.Replace("'", "''") + "' " +
+                            "WHERE id_content='" + ID_ContentTSSL.Text.Replace("'", "''") + "'"))
                         {
-                            //G.Question = G.ConvertEncoding(G.Question,65001,20127);
-                            if (G.ExecSQLiteQuery(
-                                "UPDATE vopros " +
-                                "SET question='" + G.Question.Replace("'", "''") + "' " +
-                                "WHERE id_content='" + ID_ContentTSSL.Text.Replace("'", "''") + "'"))
-                            {
-                                //G.Question = G.ConvertEncoding(G.Question, 20127, 65001);
-                                SelectedPathLbl.Text = G.Question;
-                            }
+                            //G.Question = G.ConvertEncoding(G.Question, 20127, 65001);
+                            SelectedPathLbl.Text = G.Question;
                         }
+                    }
                 }
                 else
                 {
@@ -2254,34 +2254,34 @@ namespace FAQ_Net
         private void AddInFavoritesTSB_CheckedChanged(object sender, EventArgs e)
         {
             if (AddInFavoritesTSB.Checked)
-                AddInFavoritesTSB.Text = "Убрать из избранного";
+                AddInFavoritesTSB.Text = "РЈР±СЂР°С‚СЊ РёР· РёР·Р±СЂР°РЅРЅРѕРіРѕ";
             else
-                AddInFavoritesTSB.Text = "Добавить в избранное";
+                AddInFavoritesTSB.Text = "Р”РѕР±Р°РІРёС‚СЊ РІ РёР·Р±СЂР°РЅРЅРѕРµ";
         }
 
-    public void SetStatusLabel(string message)
-    {
-      string currentTime = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss");
-      this.Invoke((MethodInvoker)delegate
-      {
-        tsslStatus.Text = string.Format("{0} - {1}", currentTime, message);
-      });
-    }
+        public void SetStatusLabel(string message)
+        {
+            string currentTime = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss");
+            this.Invoke((MethodInvoker)delegate
+            {
+                tsslStatus.Text = string.Format("{0} - {1}", currentTime, message);
+            });
+        }
 
         private void CreateBackupTSMI_Click(object sender, EventArgs e)
         {
-          SetStatusLabel("Создается резервная копия БД");
-          string currentTime = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss");
-          string err;
-          if (G.CreateBackup(this, out err))
-          {
-            SetStatusLabel("Успешное создание резервной копии БД");
-          }
-          else
-          {
-            SetStatusLabel(err);
-            MessageBox.Show("Ошибка создания резервной копии БД", err, MessageBoxButtons.OK, MessageBoxIcon.Error);
-          }
+            SetStatusLabel("РЎРѕР·РґР°РµС‚СЃСЏ СЂРµР·РµСЂРІРЅР°СЏ РєРѕРїРёСЏ Р‘Р”");
+            string currentTime = DateTime.Now.ToString("dd.MM.yyyy HH:mm:ss");
+            string err;
+            if (G.CreateBackup(this, out err))
+            {
+                SetStatusLabel("РЈСЃРїРµС€РЅРѕРµ СЃРѕР·РґР°РЅРёРµ СЂРµР·РµСЂРІРЅРѕР№ РєРѕРїРёРё Р‘Р”");
+            }
+            else
+            {
+                SetStatusLabel(err);
+                MessageBox.Show("РћС€РёР±РєР° СЃРѕР·РґР°РЅРёСЏ СЂРµР·РµСЂРІРЅРѕР№ РєРѕРїРёРё Р‘Р”", err, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void QuestionsCMS_Opening(object sender, System.ComponentModel.CancelEventArgs e)
@@ -2297,35 +2297,35 @@ namespace FAQ_Net
         {
             if (splitContainer1.Panel2Collapsed == false)
                 NodeSelect(TV1.SelectedNode);
-                //TV1_AfterSelect(sender, new TreeViewEventArgs(e.Node));
+            //TV1_AfterSelect(sender, new TreeViewEventArgs(e.Node));
         }
 
         private void DGVQuestions_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.Clicks == 2)
             {
-                if (_questionListControl.CountItemsSelected==1)
+                if (_questionListControl.CountItemsSelected == 1)
                 {
                     GetQuestionAndAnswer(_questionListControl.SelectedQuestionId.ToString());
                 }
                 else
-                    MessageBox.Show("В выбранном разделе нет вопросов. Добавьте вопрос.");
+                    MessageBox.Show("Р’ РІС‹Р±СЂР°РЅРЅРѕРј СЂР°Р·РґРµР»Рµ РЅРµС‚ РІРѕРїСЂРѕСЃРѕРІ. Р”РѕР±Р°РІСЊС‚Рµ РІРѕРїСЂРѕСЃ.");
             }
             else
                 if (e.Button == MouseButtons.Left)
-                {
-                    TabControl.SelectedTab = TabControl.TabPages["CategoriesTP"];
-                    DGVQuestionsDrag = true;
-                    StartNode = null;
-                    DoDragDrop(SelectedPathLbl.Text, DragDropEffects.Copy);
-                }
+            {
+                TabControl.SelectedTab = TabControl.TabPages["CategoriesTP"];
+                DGVQuestionsDrag = true;
+                StartNode = null;
+                DoDragDrop(SelectedPathLbl.Text, DragDropEffects.Copy);
+            }
         }
 
         private void splitContainer1_Panel2_Leave(object sender, EventArgs e)
         {
             if (saveFile.Enabled)
             {
-                if (MessageBox.Show("Сохранить изменения ответа на вопрос?", "Подтверждение сохранения",
+                if (MessageBox.Show("РЎРѕС…СЂР°РЅРёС‚СЊ РёР·РјРµРЅРµРЅРёСЏ РѕС‚РІРµС‚Р° РЅР° РІРѕРїСЂРѕСЃ?", "РџРѕРґС‚РІРµСЂР¶РґРµРЅРёРµ СЃРѕС…СЂР°РЅРµРЅРёСЏ",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
                     Save_Click(sender, new EventArgs());
@@ -2337,24 +2337,24 @@ namespace FAQ_Net
         {
             if (richText.SelectedText.Length > 0)
             {
-                if (MessageBox.Show("Перекодировать выделенный текст из WIN1252 в WIN1251?", "Подтверждение перекодирования",
+                if (MessageBox.Show("РџРµСЂРµРєРѕРґРёСЂРѕРІР°С‚СЊ РІС‹РґРµР»РµРЅРЅС‹Р№ С‚РµРєСЃС‚ РёР· WIN1252 РІ WIN1251?", "РџРѕРґС‚РІРµСЂР¶РґРµРЅРёРµ РїРµСЂРµРєРѕРґРёСЂРѕРІР°РЅРёСЏ",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    var fromEncodind = Encoding.GetEncoding(1252);//из какой кодировки
+                    var fromEncodind = Encoding.GetEncoding(1252);//РёР· РєР°РєРѕР№ РєРѕРґРёСЂРѕРІРєРё
                     var bytes = fromEncodind.GetBytes(richText.SelectedText);
-                    var toEncoding = Encoding.GetEncoding(1251);//в какую кодировку
+                    var toEncoding = Encoding.GetEncoding(1251);//РІ РєР°РєСѓСЋ РєРѕРґРёСЂРѕРІРєСѓ
                     richText.SelectedText = toEncoding.GetString(bytes);
                 }
             }
             else
-                if (MessageBox.Show("Перекодировать текст из WIN1252 в WIN1251?", "Подтверждение перекодирования",
+                if (MessageBox.Show("РџРµСЂРµРєРѕРґРёСЂРѕРІР°С‚СЊ С‚РµРєСЃС‚ РёР· WIN1252 РІ WIN1251?", "РџРѕРґС‚РІРµСЂР¶РґРµРЅРёРµ РїРµСЂРµРєРѕРґРёСЂРѕРІР°РЅРёСЏ",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    var fromEncodind = Encoding.GetEncoding(1252);//из какой кодировки
-                    var bytes = fromEncodind.GetBytes(richText.Text);
-                    var toEncoding = Encoding.GetEncoding(1251);//в какую кодировку
-                    richText.Text = toEncoding.GetString(bytes);
-                }
+            {
+                var fromEncodind = Encoding.GetEncoding(1252);//РёР· РєР°РєРѕР№ РєРѕРґРёСЂРѕРІРєРё
+                var bytes = fromEncodind.GetBytes(richText.Text);
+                var toEncoding = Encoding.GetEncoding(1251);//РІ РєР°РєСѓСЋ РєРѕРґРёСЂРѕРІРєСѓ
+                richText.Text = toEncoding.GetString(bytes);
+            }
         }
 
         private void SearchCategoryBtn_Click(object sender, EventArgs e)
@@ -2362,41 +2362,41 @@ namespace FAQ_Net
 
         }
 
-        private void тестToolStripMenuItem_Click(object sender, EventArgs e)
+        private void С‚РµСЃС‚ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             string FromCode = "65001";
             string ToCode = "1251";
-            G.InputBox("FromCodePage","Кодир1", ref FromCode);
-            G.InputBox("ToCodePage", "Кодир2", ref ToCode);
+            G.InputBox("FromCodePage", "РљРѕРґРёСЂ1", ref FromCode);
+            G.InputBox("ToCodePage", "РљРѕРґРёСЂ2", ref ToCode);
             richText.Text = G.ConvertEncoding(richText.Text, Convert.ToInt32(FromCode), Convert.ToInt32(ToCode));
         }
 
         private void MainForm_Resize(object sender, EventArgs e)
         {
-            if (this.Width - MainSC.SplitterDistance - 50>50)
+            if (this.Width - MainSC.SplitterDistance - 50 > 50)
                 richText.RightMargin = this.Width - MainSC.SplitterDistance - 50;
             else
-                richText.RightMargin =20;
+                richText.RightMargin = 20;
         }
 
         public void listView1_MouseDown(object sender, MouseEventArgs e)
         {
-          if (e.Clicks == 2)
-          {
-            if(_questionListControl.CountItemsTotal > 0)
-              ShowAnswerTSMI_Click(sender, new EventArgs());
-          }
-          else
-          {
-            int countItemsSelected = _questionListControl.CountItemsSelected;
-                if (e.Button == MouseButtons.Left && countItemsSelected == 1)
+            if (e.Clicks == 2)
             {
-              TabControl.SelectedTab = TabControl.TabPages["CategoriesTP"];
-              DGVQuestionsDrag = true;
-              StartNode = null;
-              DoDragDrop(SelectedPathLbl.Text, DragDropEffects.Copy);
+                if (_questionListControl.CountItemsTotal > 0)
+                    ShowAnswerTSMI_Click(sender, new EventArgs());
             }
-          }
+            else
+            {
+                int countItemsSelected = _questionListControl.CountItemsSelected;
+                if (e.Button == MouseButtons.Left && countItemsSelected == 1)
+                {
+                    TabControl.SelectedTab = TabControl.TabPages["CategoriesTP"];
+                    DGVQuestionsDrag = true;
+                    StartNode = null;
+                    DoDragDrop(SelectedPathLbl.Text, DragDropEffects.Copy);
+                }
+            }
         }
 
         private void BackBtn_Click(object sender, EventArgs e)
@@ -2413,7 +2413,7 @@ namespace FAQ_Net
             {
                 case "0":
                     TV1.SelectedNode = null;
-                    LastQuestions();    //Последние добавленные вопросы
+                    LastQuestions();    //РџРѕСЃР»РµРґРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅС‹Рµ РІРѕРїСЂРѕСЃС‹
                     break;
                 case "1":
                     //TV1.SelectedNode = (TreeNode)TransitionDT.Rows[CurTransitionRow]["TN"];
@@ -2426,66 +2426,66 @@ namespace FAQ_Net
             }
         }
 
-    public void listView1_SelectedIndexChanged(object sender, EventArgs e)
-    {
-      if (_questionListControl.CountItemsSelected == 1)
-      {
-        CountQuestionsVal.Text = _questionListControl.SelectedIndex.ToString() + " из " +
-                                 _questionListControl.CountItemsTotal.ToString();
-      }
-      else
-      {
-        CountQuestionsVal.Text = _questionListControl.CountItemsTotal.ToString();
-      }
-    }
+        public void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_questionListControl.CountItemsSelected == 1)
+            {
+                CountQuestionsVal.Text = _questionListControl.SelectedIndex.ToString() + " РёР· " +
+                                         _questionListControl.CountItemsTotal.ToString();
+            }
+            else
+            {
+                CountQuestionsVal.Text = _questionListControl.CountItemsTotal.ToString();
+            }
+        }
 
-    private void SortAscTSMI_Click(object sender, EventArgs e)
-    {
-      lastOrderByDesc = false;
-      SortAscTSMI.Visible = false;
-      SortDescTSMI.Visible = true;
-      _questionListControl.Sorting = SortOrder.Ascending;
-      _settingsXml.SetSetting(Constants.LAST_SORTING, SortOrder.Ascending.ToString());
-    }
+        private void SortAscTSMI_Click(object sender, EventArgs e)
+        {
+            lastOrderByDesc = false;
+            SortAscTSMI.Visible = false;
+            SortDescTSMI.Visible = true;
+            _questionListControl.Sorting = SortOrder.Ascending;
+            _settingsXml.SetSetting(Constants.LAST_SORTING, SortOrder.Ascending.ToString());
+        }
 
-    private void SortDescTSMI_Click(object sender, EventArgs e)
-    {
-      lastOrderByDesc = true;
-      SortAscTSMI.Visible = true;
-      SortDescTSMI.Visible = false;
-      _questionListControl.Sorting = SortOrder.Descending;
-      _settingsXml.SetSetting(Constants.LAST_SORTING, SortOrder.Descending.ToString());
-    }
+        private void SortDescTSMI_Click(object sender, EventArgs e)
+        {
+            lastOrderByDesc = true;
+            SortAscTSMI.Visible = true;
+            SortDescTSMI.Visible = false;
+            _questionListControl.Sorting = SortOrder.Descending;
+            _settingsXml.SetSetting(Constants.LAST_SORTING, SortOrder.Descending.ToString());
+        }
 
         private void AddRowInHistory(int type)
         {
             //int i = TransitionDT.Rows.Count;
-            while (CurTransitionRow+1 < TransitionDT.Rows.Count)
+            while (CurTransitionRow + 1 < TransitionDT.Rows.Count)
             //for (int i = CurTransitionRow + 1; i < TransitionDT.Rows.Count; i++)
             {
-                TransitionDT.Rows.RemoveAt(TransitionDT.Rows.Count-1);
+                TransitionDT.Rows.RemoveAt(TransitionDT.Rows.Count - 1);
             }
             switch (type)
             {
-                case 0: // последние добавленные вопросы
+                case 0: // РїРѕСЃР»РµРґРЅРёРµ РґРѕР±Р°РІР»РµРЅРЅС‹Рµ РІРѕРїСЂРѕСЃС‹
                     TransitionDT.Rows.Add(type, "", null);
                     break;
                 case 1: // TreeNode
                     TransitionDT.Rows.Add(type, TV1.SelectedNode.Tag.ToString(), TV1.SelectedNode);
                     break;
-                case 2: // Вопрос
+                case 2: // Р’РѕРїСЂРѕСЃ
                     TransitionDT.Rows.Add(type, ID_ContentTSSL.Text, null);
                     break;
             }
-            
+
             CurTransitionRow += 1;
             BackBtn.Visible = true;
         }
 
-        #region Рекурсивный метод удаления разделов (DelRazdelyRecursive)
+        #region Р РµРєСѓСЂСЃРёРІРЅС‹Р№ РјРµС‚РѕРґ СѓРґР°Р»РµРЅРёСЏ СЂР°Р·РґРµР»РѕРІ (DelRazdelyRecursive)
         private void DelRazdelyRecursive(TreeNode TN)
         {
-            if (G.ExecSQLiteQuery("DELETE FROM otvet WHERE id_content IN (SELECT id_content FROM vopros WHERE id_category=" + TN.Name+")") &&
+            if (G.ExecSQLiteQuery("DELETE FROM otvet WHERE id_content IN (SELECT id_content FROM vopros WHERE id_category=" + TN.Name + ")") &&
                 G.ExecSQLiteQuery("DELETE FROM vopros WHERE id_category=" + TN.Name) &&
                 G.ExecSQLiteQuery("DELETE FROM category WHERE id_category='" + TN.Name.Replace("'", "''") + "'"))
             {
@@ -2495,16 +2495,16 @@ namespace FAQ_Net
                 }
             }
         }
-        #endregion Рекурсивный метод удаления разделов (DelRazdelyRecursive)
+        #endregion Р РµРєСѓСЂСЃРёРІРЅС‹Р№ РјРµС‚РѕРґ СѓРґР°Р»РµРЅРёСЏ СЂР°Р·РґРµР»РѕРІ (DelRazdelyRecursive)
 
-        #region Удаление разделов со всем содержимым
+        #region РЈРґР°Р»РµРЅРёРµ СЂР°Р·РґРµР»РѕРІ СЃРѕ РІСЃРµРј СЃРѕРґРµСЂР¶РёРјС‹Рј
         private void DelRazdelTSMI_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Удалить раздел вместе с содержимым?", "Удаление раздела", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes &&
-                MessageBox.Show("Удаляя раздел с материалами Вы потеряете все материалы, подтвердите еще раз?", "Удаление раздела", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+            if (MessageBox.Show("РЈРґР°Р»РёС‚СЊ СЂР°Р·РґРµР» РІРјРµСЃС‚Рµ СЃ СЃРѕРґРµСЂР¶РёРјС‹Рј?", "РЈРґР°Р»РµРЅРёРµ СЂР°Р·РґРµР»Р°", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes &&
+                MessageBox.Show("РЈРґР°Р»СЏСЏ СЂР°Р·РґРµР» СЃ РјР°С‚РµСЂРёР°Р»Р°РјРё Р’С‹ РїРѕС‚РµСЂСЏРµС‚Рµ РІСЃРµ РјР°С‚РµСЂРёР°Р»С‹, РїРѕРґС‚РІРµСЂРґРёС‚Рµ РµС‰Рµ СЂР°Р·?", "РЈРґР°Р»РµРЅРёРµ СЂР°Р·РґРµР»Р°", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
             {
-                DelRazdelyRecursive(TV1.SelectedNode);  //Удаление выбранного раздела и всех подразделов
-                RefreshCountQuestAndAnswers();          //Вывести кол-во ответов и вопросов
+                DelRazdelyRecursive(TV1.SelectedNode);  //РЈРґР°Р»РµРЅРёРµ РІС‹Р±СЂР°РЅРЅРѕРіРѕ СЂР°Р·РґРµР»Р° Рё РІСЃРµС… РїРѕРґСЂР°Р·РґРµР»РѕРІ
+                RefreshCountQuestAndAnswers();          //Р’С‹РІРµСЃС‚Рё РєРѕР»-РІРѕ РѕС‚РІРµС‚РѕРІ Рё РІРѕРїСЂРѕСЃРѕРІ
                 if (TV1.SelectedNode.Parent != null)
                 {
                     G.ExecSQLiteQuery(GetUpdateCategoryCountChildSql(TV1.SelectedNode.Parent.Name));
@@ -2523,21 +2523,21 @@ namespace FAQ_Net
                 }
             }
         }
-        #endregion Удаление разделов со всем содержимым
+        #endregion РЈРґР°Р»РµРЅРёРµ СЂР°Р·РґРµР»РѕРІ СЃРѕ РІСЃРµРј СЃРѕРґРµСЂР¶РёРјС‹Рј
 
         /// <summary>
-        /// Обновить кол-во подкатегорий
+        /// РћР±РЅРѕРІРёС‚СЊ РєРѕР»-РІРѕ РїРѕРґРєР°С‚РµРіРѕСЂРёР№
         /// </summary>
-        /// <param name="idCategory">Категория, у которой нужно обновить количество подкатегорий</param>
+        /// <param name="idCategory">РљР°С‚РµРіРѕСЂРёСЏ, Сѓ РєРѕС‚РѕСЂРѕР№ РЅСѓР¶РЅРѕ РѕР±РЅРѕРІРёС‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ РїРѕРґРєР°С‚РµРіРѕСЂРёР№</param>
         private string GetUpdateCategoryCountChildSql(string idCategory)
         {
-          return "UPDATE category SET count_child = (SELECT count(*) FROM category c WHERE c.parent_category = category.id_category) where id_category=" + idCategory;
+            return "UPDATE category SET count_child = (SELECT count(*) FROM category c WHERE c.parent_category = category.id_category) where id_category=" + idCategory;
         }
 
         private void CategoriesContextMenu_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            CreateQuestionTSMI.Enabled = 
-                CreateSubcategoryTSMI.Enabled = 
+            CreateQuestionTSMI.Enabled =
+                CreateSubcategoryTSMI.Enabled =
                 DelRazdelMainTSMI.Enabled =
                 ChangeNameCategoryTSMI.Enabled =
                 (TV1.SelectedNode != null);
@@ -2550,27 +2550,27 @@ namespace FAQ_Net
             DelRazdelWithReplaceForm = new Form();
             //TreeView TVCopy = new TreeView();
             DelRazdelWithReplaceForm.Name = "ReplaceRazdelForm";
-            DelRazdelWithReplaceForm.Text = "Удаление раздела с перемещением";
+            DelRazdelWithReplaceForm.Text = "РЈРґР°Р»РµРЅРёРµ СЂР°Р·РґРµР»Р° СЃ РїРµСЂРµРјРµС‰РµРЅРёРµРј";
 
             //G.GetTreeNodes(TVCopy, null);
             TV1.ContextMenuStrip = null;
 
-            //Отключение событий
+            //РћС‚РєР»СЋС‡РµРЅРёРµ СЃРѕР±С‹С‚РёР№
             TV1.MouseDown -= TV1_MouseDown;
             TV1.AfterSelect -= TV1_AfterSelect;
 
             TV1.AllowDrop = false;
             DelRazdelWithReplaceForm.Controls.Add(TV1);
 
-            //Метка с комментарием
+            //РњРµС‚РєР° СЃ РєРѕРјРјРµРЅС‚Р°СЂРёРµРј
             Label TitleLbl = new Label();
-            TitleLbl.Text = "Перенос раздела "+TV1.SelectedNode.Text+" в:";
+            TitleLbl.Text = "РџРµСЂРµРЅРѕСЃ СЂР°Р·РґРµР»Р° " + TV1.SelectedNode.Text + " РІ:";
             TitleLbl.Dock = DockStyle.Top;
             DelRazdelWithReplaceForm.Controls.Add(TitleLbl);
 
-            //Кнопка подтверждения перемещения
+            //РљРЅРѕРїРєР° РїРѕРґС‚РІРµСЂР¶РґРµРЅРёСЏ РїРµСЂРµРјРµС‰РµРЅРёСЏ
             Button Btn = new Button();
-            Btn.Text = "Удалить с перемещением";
+            Btn.Text = "РЈРґР°Р»РёС‚СЊ СЃ РїРµСЂРµРјРµС‰РµРЅРёРµРј";
             Btn.Dock = DockStyle.Bottom;
             Btn.Click += new EventHandler(DelRazdelWithReplace_Click);
             DelRazdelWithReplaceForm.Controls.Add(Btn);
@@ -2581,39 +2581,39 @@ namespace FAQ_Net
             DelRazdelWithReplaceForm.ShowDialog();
         }
 
-        #region Удаление раздела с перемещением содержимого (DelRazdelWithReplace_Click)
+        #region РЈРґР°Р»РµРЅРёРµ СЂР°Р·РґРµР»Р° СЃ РїРµСЂРµРјРµС‰РµРЅРёРµРј СЃРѕРґРµСЂР¶РёРјРѕРіРѕ (DelRazdelWithReplace_Click)
         private void DelRazdelWithReplace_Click(object sender, EventArgs e)
         {
-            //Проверка на пустое
+            //РџСЂРѕРІРµСЂРєР° РЅР° РїСѓСЃС‚РѕРµ
             if (TV1.SelectedNode == null)
             {
-                MessageBox.Show("Выберите раздел для перемещения", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Р’С‹Р±РµСЂРёС‚Рµ СЂР°Р·РґРµР» РґР»СЏ РїРµСЂРµРјРµС‰РµРЅРёСЏ", "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            //Проверка на совпадение
+            //РџСЂРѕРІРµСЂРєР° РЅР° СЃРѕРІРїР°РґРµРЅРёРµ
             if (TV1.SelectedNode == TN_ReplaceRazdel)
             {
-                MessageBox.Show("Нельзя переместить удаляемый объект в себя", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("РќРµР»СЊР·СЏ РїРµСЂРµРјРµСЃС‚РёС‚СЊ СѓРґР°Р»СЏРµРјС‹Р№ РѕР±СЉРµРєС‚ РІ СЃРµР±СЏ", "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            //проверка на дочерний узел
+            //РїСЂРѕРІРµСЂРєР° РЅР° РґРѕС‡РµСЂРЅРёР№ СѓР·РµР»
             TreeNode TNParent = TV1.SelectedNode.Parent;
-            while (TNParent!=null)
+            while (TNParent != null)
             {
-                if (TNParent==TN_ReplaceRazdel)
+                if (TNParent == TN_ReplaceRazdel)
                 {
-                    MessageBox.Show("Нельзя переместить удаляемый объект в дочерний узел","Ошибка",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                    MessageBox.Show("РќРµР»СЊР·СЏ РїРµСЂРµРјРµСЃС‚РёС‚СЊ СѓРґР°Р»СЏРµРјС‹Р№ РѕР±СЉРµРєС‚ РІ РґРѕС‡РµСЂРЅРёР№ СѓР·РµР»", "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 TNParent = TNParent.Parent;
             }
-            //удаление с перемещением
+            //СѓРґР°Р»РµРЅРёРµ СЃ РїРµСЂРµРјРµС‰РµРЅРёРµРј
             #region 
             if (G.ExecSQLiteQuery("UPDATE category SET parent_category='" + TV1.SelectedNode.Name.Replace("'", "''") + "' WHERE parent_category='" + TN_ReplaceRazdel.Name.Replace("'", "''") + "'") &&
-                G.ExecSQLiteQuery("UPDATE vopros SET id_category='" + TV1.SelectedNode.Name.Replace("'", "''") + "' WHERE id_category='" + TN_ReplaceRazdel.Name.Replace("'","''") + "'") &&
-                G.ExecSQLiteQuery("DELETE FROM category WHERE id_category='"+TN_ReplaceRazdel.Name.Replace("'","''")+"'"))
+                G.ExecSQLiteQuery("UPDATE vopros SET id_category='" + TV1.SelectedNode.Name.Replace("'", "''") + "' WHERE id_category='" + TN_ReplaceRazdel.Name.Replace("'", "''") + "'") &&
+                G.ExecSQLiteQuery("DELETE FROM category WHERE id_category='" + TN_ReplaceRazdel.Name.Replace("'", "''") + "'"))
             {
-                G.GetTreeNodes(TV1, TV1.SelectedNode, true);    //Перезагрузка узлов
+                G.GetTreeNodes(TV1, TV1.SelectedNode, true);    //РџРµСЂРµР·Р°РіСЂСѓР·РєР° СѓР·Р»РѕРІ
                 NodeSelect(TV1.SelectedNode);
                 CountSubcategoryVal.Text = TV1.SelectedNode.Nodes.Count.ToString();
                 TN_ReplaceRazdel.Remove();
@@ -2621,7 +2621,7 @@ namespace FAQ_Net
             }
             #endregion
         }
-        #endregion Удаление раздела с перемещением содержимого (DelRazdelWithReplace_Click)
+        #endregion РЈРґР°Р»РµРЅРёРµ СЂР°Р·РґРµР»Р° СЃ РїРµСЂРµРјРµС‰РµРЅРёРµРј СЃРѕРґРµСЂР¶РёРјРѕРіРѕ (DelRazdelWithReplace_Click)
 
         private void ReplaceRazdelForm_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -2629,8 +2629,8 @@ namespace FAQ_Net
             TV1.Dock = DockStyle.Fill;
             TV1.BringToFront();
             TV1.ContextMenuStrip = CategoriesContextMenu;
-            
-            //Включение событий
+
+            //Р’РєР»СЋС‡РµРЅРёРµ СЃРѕР±С‹С‚РёР№
             TV1.MouseDown += TV1_MouseDown;
             TV1.AfterSelect += TV1_AfterSelect;
             TV1.AllowDrop = true;
@@ -2645,82 +2645,82 @@ namespace FAQ_Net
 
         private void tsmiGridView_Click(object sender, EventArgs e)
         {
-          _questionListControl = _questionDgvControl;
-          _questionListViewControl.Visible = false;
-          _questionDgvControl.Visible = true;
-          _questionListControl.AddQuestionsIntoListControl(true);
-          _settingsXml.SetSetting(Constants.LAST_VIEW, _questionListControl.ToString());
-          tsmiGridView.Checked = true;
-          tsmiListView.Checked = false;
+            _questionListControl = _questionDgvControl;
+            _questionListViewControl.Visible = false;
+            _questionDgvControl.Visible = true;
+            _questionListControl.AddQuestionsIntoListControl(true);
+            _settingsXml.SetSetting(Constants.LAST_VIEW, _questionListControl.ToString());
+            tsmiGridView.Checked = true;
+            tsmiListView.Checked = false;
         }
 
         private void tsmiListView_Click(object sender, EventArgs e)
         {
-          _questionListControl = _questionListViewControl;
-          _questionListViewControl.Visible = true;
-          _questionDgvControl.Visible = false;
-          _questionListControl.AddQuestionsIntoListControl(true);
-          _settingsXml.SetSetting(Constants.LAST_VIEW, _questionListControl.ToString());
-          tsmiGridView.Checked = false;
-          tsmiListView.Checked = true;
+            _questionListControl = _questionListViewControl;
+            _questionListViewControl.Visible = true;
+            _questionDgvControl.Visible = false;
+            _questionListControl.AddQuestionsIntoListControl(true);
+            _settingsXml.SetSetting(Constants.LAST_VIEW, _questionListControl.ToString());
+            tsmiGridView.Checked = false;
+            tsmiListView.Checked = true;
         }
 
         private void richMenu_Opening(object sender, System.ComponentModel.CancelEventArgs e)
         {
-          copyRichText.Enabled = (richText.SelectedText.Length > 0);
-          cutRichText.Enabled = (richText.SelectedText.Length > 0);
+            copyRichText.Enabled = (richText.SelectedText.Length > 0);
+            cutRichText.Enabled = (richText.SelectedText.Length > 0);
         }
 
-    private void richText_KeyDown(object sender, KeyEventArgs e)
-    {
-      if (e.Control)
-      {
-        switch (e.KeyCode)
+        private void richText_KeyDown(object sender, KeyEventArgs e)
         {
-          case Keys.B:
-            e.SuppressKeyPress = true;  // Stops other controls on the form receiving event.
-            bold.Checked = !bold.Checked;
-            Tools_Click(bold, new EventArgs());
-            break;
-          case Keys.U:
-            e.SuppressKeyPress = true;  // Stops other controls on the form receiving event.
-            under.Checked = !under.Checked;
-            Tools_Click(under, new EventArgs());
-            break;
-          case Keys.I:
-            e.SuppressKeyPress = true;  // Stops other controls on the form receiving event.
-            italic.Checked = !italic.Checked;
-            Tools_Click(italic, new EventArgs());
-            break;
-          case Keys.J:
-            // Выравнивание текста по ширине
-            const string JUSTIFIED_ALIGN_RTF = "\\pard\\qj";
-              if (richText.SelectedRtf.Length == 0)
-                richText.SelectedRtf = @"{\rtf1\qj}";
-              else
-                richText.SelectedRtf = richText.SelectedRtf
-                  .Replace("\\pard\\f0", JUSTIFIED_ALIGN_RTF)
-                  .Replace("\\pard\\cf1", JUSTIFIED_ALIGN_RTF)
-                  .Replace("\\pard\\ql", JUSTIFIED_ALIGN_RTF)
-                  .Replace("\\pard\\qr", JUSTIFIED_ALIGN_RTF)
-                  .Replace("\\pard\\qc", JUSTIFIED_ALIGN_RTF);
-            break;
+            if (e.Control)
+            {
+                switch (e.KeyCode)
+                {
+                    case Keys.B:
+                        e.SuppressKeyPress = true;  // Stops other controls on the form receiving event.
+                        bold.Checked = !bold.Checked;
+                        Tools_Click(bold, new EventArgs());
+                        break;
+                    case Keys.U:
+                        e.SuppressKeyPress = true;  // Stops other controls on the form receiving event.
+                        under.Checked = !under.Checked;
+                        Tools_Click(under, new EventArgs());
+                        break;
+                    case Keys.I:
+                        e.SuppressKeyPress = true;  // Stops other controls on the form receiving event.
+                        italic.Checked = !italic.Checked;
+                        Tools_Click(italic, new EventArgs());
+                        break;
+                    case Keys.J:
+                        // Р’С‹СЂР°РІРЅРёРІР°РЅРёРµ С‚РµРєСЃС‚Р° РїРѕ С€РёСЂРёРЅРµ
+                        const string JUSTIFIED_ALIGN_RTF = "\\pard\\qj";
+                        if (richText.SelectedRtf.Length == 0)
+                            richText.SelectedRtf = @"{\rtf1\qj}";
+                        else
+                            richText.SelectedRtf = richText.SelectedRtf
+                              .Replace("\\pard\\f0", JUSTIFIED_ALIGN_RTF)
+                              .Replace("\\pard\\cf1", JUSTIFIED_ALIGN_RTF)
+                              .Replace("\\pard\\ql", JUSTIFIED_ALIGN_RTF)
+                              .Replace("\\pard\\qr", JUSTIFIED_ALIGN_RTF)
+                              .Replace("\\pard\\qc", JUSTIFIED_ALIGN_RTF);
+                        break;
+                }
+            }
         }
-      }
-    }
 
-    private void tsmiAboutProgram_Click(object sender, EventArgs e)
-    {
-      using (AboutProgramForm aboutProgramForm = new AboutProgramForm())
-      {
-        aboutProgramForm.ShowInTaskbar = false;
-        aboutProgramForm.ShowDialog();
-      }
-    }
+        private void tsmiAboutProgram_Click(object sender, EventArgs e)
+        {
+            using (AboutProgramForm aboutProgramForm = new AboutProgramForm())
+            {
+                aboutProgramForm.ShowInTaskbar = false;
+                aboutProgramForm.ShowDialog();
+            }
+        }
 
-    private void tsmiDesignSettings_Click(object sender, EventArgs e)
-    {
-      _appSettingForm.Show();
+        private void tsmiDesignSettings_Click(object sender, EventArgs e)
+        {
+            _appSettingForm.Show();
+        }
     }
-  }
 }
